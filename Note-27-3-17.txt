@@ -1,0 +1,16 @@
+Link API document: https://slack-files.com/T2T65R1QF-F4KKPGKQB-d5fb355145
+Thằng Nic nó bảo là:
+
+nic
+3:00 AM
+@henshinger the idea is that you write a program which makes regular requests to the API and submits predictions automaticallyHave a look at the API documentation - there�s an endpoint for displaying recent posts from the 5 accountsAll times are in GMT, so the prediction needs to be submitted within 10 minutes GMT
+henshinger
+3:01 AM
+oh I see. So I need to have a server set up when it's time?
+nic
+3:04 AM
+you need to have your program up and running by 02:00 GMT 6 April - it is up to you whether you set this up on a server or not. I guess it depends on your programming language / method
+=> đến hôm chạy live phải cắm máy chạy liên tục. Trên máy đấy phải có một cái app liên tục gọi GET vào api /live để lấy posts từ instagram về.
+Sau khi lấy data về rồi thì phải có một cái app chạy prediction và ra được kết quả trong lâu nhất là 8 phút (giả sử mạng chậm, submit lên mất 2 phút).
+Sau đấy thì gọi vào api /submission để submit kết quả lên.
+Có cần mua UPS không ta :))
