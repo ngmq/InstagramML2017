@@ -76,4 +76,7 @@ p0[0].get('instagram').get('thumbnail_src')
 p0[0].get('instagram').get('display_src')
 được https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/e35/17439220_433739233638447_307425121868447744_n.jpg
 
-Lưu ý là màu sắc và độ nét của ảnh thumbnail và gốc khác nhau đôi chút. Câu hỏi đặt ra là nếu tiến hành xử lý ảnh thì nên làm trên ảnh nào?
+3) Lưu ý là màu sắc và độ nét của ảnh thumbnail và gốc khác nhau đôi chút. Câu hỏi đặt ra là nếu tiến hành xử lý ảnh thì nên làm trên ảnh nào?
+
+4) Lúc tính likes cho từng người thì phải scale. Ví dụ một account thường xuyên nhận likes trong khoảng từ 100 tới 1000 thì không thể predict 13000
+với ảnh mới được mà cao lắm là 1300 hoặc 2000.

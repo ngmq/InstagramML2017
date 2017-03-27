@@ -6,4 +6,17 @@ không quyết định được số likes theo chất lượng ảnh.
 Tương tự câu trên, các tài khoản upload lên toàn là chuyên nghiệp nên hầu như không bao giờ họ tự nhiên upload các ảnh không liên quan 
 làm loãng trang instagram của họ.
 
-Ý tưởng 3: 
+Ý tưởng 3: không có so sánh hơn kém giữa các ảnh mà chỉ là "khác biệt". Khác biệt này có thể là bất cứ thứ gì, 
+từ phông nền tới tông màu, góc chụp, cách thể hiện hoặc thậm chí là giờ upload, caption dài hay ngắn, có mặt người hay không. 
+=> Like nhiều với like ít không phản ánh ảnh tốt hơn hay xấu hơn mà phản ánh tình trạng phân chia trong cộng đồng người follow của một 
+acc nào đó. Ví dụ, tình cờ là một lượng phần trăm lớn những người follow một acc thích góc chụp nghiêng hơn góc chụp thẳng, do đó
+xác suất họ bấm like ảnh góc chụp nghiêng lớn hơn => trung bình, số lượng like của ảnh góc chụp nghiêng lớn hơn.
+Từ dự đoán này cho ra ba vấn đề:
++ Một là ta phải bóc tách được các feature cơ bản đủ khả năng phân chia tập hợp ảnh ra làm hai hoặc nhiều bộ phận.
++ Hai là sau khi có được feature thì phải làm sao đó để có con số thống kê được bộ phận nào lớn hơn bộ phận nào.
++ Ba là phải xây dựng thuật toán phân cụm (clustering) để chia số ảnh tương ứng.
+Ý tưởng này xem ra mất khá nhiều thời gian để thực hiện.
+
+Ý tưởng 4: coi bài toán như một bài regression cho biến rời rạc. Xây dựng một cái deep net đầu vào là ảnh, đầu ra là giá trị tính được.
+Ý tưởng này cần tìm hiểu thêm dùng deep net cho regression biến rời rạc sao cho hiệu quả. Cách làm này có thể sẽ fail nhiều hoặc ít,
+vì regression là học một hàm số cố định, trong khi số likes thì không phải là một số cố định.
