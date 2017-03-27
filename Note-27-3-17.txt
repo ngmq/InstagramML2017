@@ -1,6 +1,7 @@
 Link API document: https://slack-files.com/T2T65R1QF-F4KKPGKQB-d5fb355145
-Thằng Nic nó bảo là:
 
+1) Cách chạy
+Thằng Nic nó bảo là:
 nic
 3:00 AM
 @henshinger the idea is that you write a program which makes regular requests to the API and submits predictions automaticallyHave a look at the API documentation - there�s an endpoint for displaying recent posts from the 5 accountsAll times are in GMT, so the prediction needs to be submitted within 10 minutes GMT
@@ -14,3 +15,55 @@ you need to have your program up and running by 02:00 GMT 6 April - it is up to 
 Sau khi lấy data về rồi thì phải có một cái app chạy prediction và ra được kết quả trong lâu nhất là 8 phút (giả sử mạng chậm, submit lên mất 2 phút).
 Sau đấy thì gọi vào api /submission để submit kết quả lên.
 Có cần mua UPS không ta :))
+
+2) Kết quả đọc file dataset:
+
+File dataset (dataset.json) chứa dữ liệu về các posts của 5 account instagram: 
+kissinfashion
+instagood
+beautifuldestinations
+etdieucrea
+josecabaco
+
+Khi gọi:
+f = open('dataset.json')
+data = json.load(f)
+
+thì data là một cái list of dict có length = 5 tương ứng với 5 acc. data[0] là một cái dict có 3 keys:
+'username' : [tên acc]. ví dụ là kissinfashion
+'posts': lại là một cái list of dict nữa. Mỗi dict trong list này tương ứng với 1 post. 
+'id': là một chuỗi ký tự toàn số, chắc là id của acc trên instagram. Toàn bộ id theo thứ tự tương ứng với acc là:
+=============================
+528405678
+5136815
+276192188
+356564939
+364395
+=============================
+
+Giờ nghiên cứu cái list 'posts': chạy lệnh
+p0 = data[0].get("posts")
+print p0[0].keys()
+
+ra kết quả
+[u'updated', u'instagram', u'annotations']
+
+Cái trường updated đầu tiên là thời gian mà cái post đấy được update (chưa biết đọc như nào cho chuẩn)
+Trường instagram thì là thông số về cái ảnh đó: link ảnh, kích cỡ, caption,...
+Chạy print p0[0].get('instagram').keys() ra 
+=============================
+[u'code', u'dimensions', u'caption', u'comments_disabled', u'__typename', u'comments', u'date', u'likes', u'owner', u'thumbnail_src', u'is_video', u'id', u'display_src']
+=============================
+Chạy print p0[0].get('annotations').keys() ra
+=============================
+[u'safeSearchAnnotation', u'textAnnotations', u'webDetection', u'labelAnnotations', u'imagePropertiesAnnotation', u'fullTextAnnotation', u'cropHintsAnnotation']
+
+Ví dụ cái ảnh đầu tiên p0[0] thì có 2 trường key và instagram là
+=============================
+1490138104
+=============================
+{u'code': u'BR6v3c0joCc', u'dimensions': {u'width': 1080, u'height': 1080}, u'caption': u'Teddy. \U0001f618\U0001f43b Love??? Credit @underthecafelights', u'comments_disabled': False, u'__typename': u
+'GraphImage', u'comments': {u'count': 5}, u'date': 1490137450, u'likes': {u'count': 1351}, u'owner': {u'id': u'528405678'}, u'thumbnail_src': u'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/s64
+0x640/sh0.08/e35/17439220_433739233638447_307425121868447744_n.jpg', u'is_video': False, u'id': u'1475702346621026460', u'display_src': u'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/e35/17439
+220_433739233638447_307425121868447744_n.jpg'}
+Link ảnh lấy theo code là: https://www.instagram.com/p/BR6v3c0joCc/
