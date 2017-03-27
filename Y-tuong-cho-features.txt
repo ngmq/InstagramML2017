@@ -1,0 +1,9 @@
+Ý tưởng 1: ảnh chất lượng tốt -> like nhiều.
+Cũng hợp lý, nhưng thật ra các tài khoản upload lên toàn là chuyên nghiệp nên chất lượng ảnh của họ không lệch nhau nhiều, cho nên 
+không quyết định được số likes theo chất lượng ảnh.
+
+Ý tưởng 2: ảnh có trùng chủ đề chính với các ảnh đã được like nhiều -> like nhiều.
+Tương tự câu trên, các tài khoản upload lên toàn là chuyên nghiệp nên hầu như không bao giờ họ tự nhiên upload các ảnh không liên quan 
+làm loãng trang instagram của họ.
+
+Ý tưởng 3: 

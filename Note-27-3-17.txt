@@ -66,4 +66,14 @@ Ví dụ cái ảnh đầu tiên p0[0] thì có 2 trường key và instagram l�
 'GraphImage', u'comments': {u'count': 5}, u'date': 1490137450, u'likes': {u'count': 1351}, u'owner': {u'id': u'528405678'}, u'thumbnail_src': u'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/s64
 0x640/sh0.08/e35/17439220_433739233638447_307425121868447744_n.jpg', u'is_video': False, u'id': u'1475702346621026460', u'display_src': u'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/e35/17439
 220_433739233638447_307425121868447744_n.jpg'}
-Link ảnh lấy theo code là: https://www.instagram.com/p/BR6v3c0joCc/
+=============================
+Link ảnh trên instagram lấy theo code là: https://www.instagram.com/p/BR6v3c0joCc/
+Để lấy số like thì gọi: p0[0].get('instagram').get('likes').get('count')
+Để lấy ảnh thumbnail thì gọi: 
+p0[0].get('instagram').get('thumbnail_src')
+được https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/17439220_433739233638447_307425121868447744_n.jpg
+Để lấy ảnh gốc thì gọi
+p0[0].get('instagram').get('display_src')
+được https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/e35/17439220_433739233638447_307425121868447744_n.jpg
+
+Lưu ý là màu sắc và độ nét của ảnh thumbnail và gốc khác nhau đôi chút. Câu hỏi đặt ra là nếu tiến hành xử lý ảnh thì nên làm trên ảnh nào?
