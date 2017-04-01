@@ -49,7 +49,19 @@ f.close()
 # print "============================="
 # print p0[0].get('annotations').keys()
 # print "============================="
-p1 = data[1].get('posts')
-print p1[0].get('instagram').get('code')
-print p1[0].get('instagram').get('likes').get('count')
-print p1[0].get('annotations')
+# p1 = data[1].get('posts')
+# print p1[0].get('instagram').get('code')
+# print p1[0].get('instagram').get('likes').get('count')
+# print p1[0].get('annotations')
+
+
+# for i in range(0, 5):
+    # username = data[i].get('username')
+    # posts = data[i].get('posts')
+    # print len(posts)
+    # for i, p in enumerate(posts):
+        # is_video = p.get('instagram').get('is_video')
+        # post_like = p.get('instagram').get('likes').get('count')
+        # if is_video:
+            # print '******'
+            
