@@ -1,0 +1,734 @@
+Note ngay 01-4-2017
+
+Đã code file GetNewImages.py để lấy ảnh mới. Kết quả của 
+
+r = requests.get('http://challenges.instagram.unpossib.ly/api/live', auth=HTTPBasicAuth(_user, _pass))
+print r.status_code
+# print r.text # không nên dùng r.text vì thiếu thông tin đầy đủ, dùng r.json()
+print r.json()
+
+là đoạn json
+
+{
+	"success": true,
+	"accounts": [{
+			"username": "beautifuldestinations",
+			"id": "276192188",
+			"updated": 1491035042,
+			"posts": []
+		}, {
+			"username": "etdieucrea",
+			"id": "356564939",
+			"updated": 1491035042,
+			"posts": []
+		}, {
+			"username"
+			: "instagood",
+			"id": "5136815",
+			"updated": 1491035101,
+			"posts": []
+		}, {
+			"username": "josecabaco",
+			"id": "364395",
+			"updated": 1491035101,
+			"posts": []
+		}, {
+			"username": "kissinfashion",
+			"id": "528405678",
+			"updated": 1491035041,
+			"
+			posts": []
+		}
+	]
+}
+
+Trong ví dụ trên thì trường posts của các acc đều rỗng vì trong không có acc nào post ảnh trong khoảng cách 10 phút tại thời điểm chạy script. 
+Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1 lần / 30 giây để khỏi bị sót ảnh. Khi có ảnh mới thì gọi r.json() trả về:
+==========================
+
+{
+	u 'accounts': [{
+			u 'username': u 'beautifuldestinations',
+			u 'updated': 1491035582,
+			u 'posts': [],
+			u 'id': u '276192188'
+		}, {
+			u 'username': u 'etdieucrea',
+			u 'updated': 1491035583,
+			u 'posts': [{
+					u 'updated': 1491035583,
+					u 'instagram': {
+						u 'code': u 'BSVgpp1lNKc',
+						u 'dimensions': {
+							u 'width': 750,
+							u 'height': 500
+						},
+						u 'caption': u 'Maman avant son travail. #byjulot',
+						u 'comments_disabled': False,
+						u '__typename': u 'GraphImage',
+						u 'comments': {
+							u 'count': 0
+						},
+						u 'date': 1491035442,
+						u 'likes': {
+							u 'count': 27
+						},
+						u 'owner': {
+							u 'id': u '356564939'
+						},
+						u 'thumbnail_src': u 'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e3
+						5/c166.0.667.667/17661773_422422021442791_2009228513302806528_n.jpg',
+						u 'is_video': False,
+						u 'id': u '1483235252197708444',
+						u 'display_src': u 'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/s750x750/sh0.08/e35/17661773_422422021442791_2009228513302806528_n.jpg'
+					},
+					u 'annotations': {
+						u 'safeSearchAnnotation': {
+							u 'medical': u 'VERY_UNLIKELY',
+							u 'spoof': u 'VERY_UNLIKELY',
+							u 'violence': u 'VERY_UNLIKELY',
+							u 'adult': u 'UNLIKELY'
+						},
+						u 'imagePropertiesAnnotation': {
+							u 'dominantColors': {
+								u 'colors': [{
+										u 'color': {
+											u 'b
+											lue': 158,
+											u 'green': 158,
+											u 'red': 158
+										},
+										u 'pixelFraction': 0.2916101,
+										u 'score': 0.28260607
+									}, {
+										u 'color': {
+											u 'blue': 23,
+											u 'green': 23,
+											u 'red': 23
+										},
+										u 'pixelFraction': 0.1505206,
+										u 'score': 0.16862993
+									}, {
+										u 'color': {
+											u 'blue': 190,
+											u 'green': 190,
+											u 'red': 190
+										},
+										u 'pixelFraction': 0.3106232,
+										u 'score': 0.28064644
+									}, {
+										u 'color': {
+											u 'blue': 123,
+											u 'green': 123,
+											u 'red': 123
+										},
+										u 'pixelFraction': 0.11468236,
+										u 'score': 0.1228309
+									}, {
+										u 'color': {
+											u 'blue': 49,
+											u 'green': 49,
+											u 'red': 49
+										},
+										u 'pixelFraction': 0.05183341,
+										u 'score'
+										: 0.057563055
+									}, {
+										u 'color': {
+											u 'blue': 87,
+											u 'green': 87,
+											u 'red': 87
+										},
+										u 'pixelFraction': 0.045646597,
+										u 'score': 0.05029227
+									}, {
+										u 'color': {
+											u 'blue': 223,
+											u 'green': 223,
+											u 'red': 223
+										},
+										u 'pixelFraction': 0.03508375,
+										u 'score': 0.03743133
+									}
+								]
+							}
+						},
+						u 'webDetection': {
+							u 'webEntities': [{
+									u 'entityId': u '/m/01dv4h',
+									u 'sc
+									ore': 0.90215206,
+									u 'description': u 'Portrait'
+								}, {
+									u 'entityId': u '/m/02pkb8',
+									u 'score': 0.8698892,
+									u 'd
+									escription': u 'Lady'
+								}, {
+									u 'entityId': u '/m/01g6gs',
+									u 'score': 0.76539576,
+									u 'description': u 'Black and white'
+								}, {
+									u 'entityId': u '/m/0chml9',
+									u 'score': 0.73770833,
+									u 'description': u 'Portrait photography'
+								}, {
+									u 'entityId': u '/m/0dzct',
+									u 'score': 0.60005796,
+									u 'description': u 'Face'
+								}, {
+									u 'entityId': u '/m/019s
+									c',
+									u 'score': 0.547933,
+									u 'description': u 'Black'
+								}, {
+									u 'entityId': u '/m/05r655',
+									u 'score': 0.53346735,
+									u 'description': u 'Girl'
+								}, {
+									u 'entityId': u '/m/02qbl1m',
+									u 'score': 0.5251996,
+									u 'description': u 'Photo
+									shoot'
+								}, {
+									u 'entityId': u '/m/01f43',
+									u 'score': 0.48448032,
+									u 'description': u 'Beauty'
+								}, {
+									u 'entityId':
+									u '/m/019nj4',
+									u 'score': 0.45964062,
+									u 'description': u 'Smile'
+								}, {
+									u 'entityId': u '/m/05wkw',
+									u 'score':
+									0.40461,
+									u 'description': u 'Photography'
+								}, {
+									u 'entityId': u '/m/0294jb',
+									u 'score': 0.40377674,
+									u 'descr
+									iption': u 'Blond'
+								}, {
+									u 'entityId': u '/m/015c4z',
+									u 'score': 0.39832696,
+									u 'description': u 'Sitting'
+								}, {
+									u 'entityId': u '/m/0d1pc',
+									u 'score': 0.38483447,
+									u 'description': u 'Model'
+								}, {
+									u 'entityId': u '/m/083jv',
+									u 'score': 0.37486,
+									u 'description': u 'White'
+								}
+							],
+							u 'visuallySimilarImages': [{
+									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/97/05/5a/97055ac80966420d5da69306fce2cbd9.jpg'
+								}, {
+									u 'url': u 'https://med
+									ia.licdn.com/mpr/mpr/AAEAAQAAAAAAAASoAAAAJDVmNDk0N2JhLTE5YzgtNDY1Yy1hOTBlLTUxMTMxN2UwN2JlMw.jpg'
+								}, {
+									u 'url': u 'http://cdn.storyhive.com/telusproduction/57d654aeb28db.jpg'
+								}, {
+									u 'url': u 'https://s-media-c
+									ache-ak0.pinimg.com/736x/b9/50/75/b95075e00935ceedc461c66ce184bcfb.jpg'
+								}, {
+									u 'url': u 'https://s-media
+									-cache-ak0.pinimg.com/736x/d5/2d/fd/d52dfd51b1a56414434ac651d161c669.jpg'
+								}, {
+									u 'url': u 'https://s-med
+									ia-cache-ak0.pinimg.com/736x/bd/34/13/bd34139f31872e0aed58a6b7d6e60617.jpg'
+								}, {
+									u 'url': u 'http://www.
+									hbs.edu/mba/PublishingImages/people/2012/portrait-project/anuger710x558.jpg'
+								}, {
+									u 'url': u 'https://cd
+									n.pixabay.com/photo/2016/04/12/10/39/portrait-1324072_960_720.jpg'
+								}, {
+									u 'url': u 'https://s-media-cach
+									e-ak0.pinimg.com/736x/de/c3/e3/dec3e37060d3b8b3313b709aa02e9fa2.jpg'
+								}, {
+									u 'url': u 'https://s-media-ca
+									che-ak0.pinimg.com/736x/9d/23/f5/9d23f59f7755d992a0dbcf9aae8ead20.jpg'
+								}, {
+									u 'url': u 'https://s-media-
+									cache-ak0.pinimg.com/736x/fd/ba/7b/fdba7b45d7e05d4a94a8f1ff7f623194.jpg'
+								}, {
+									u 'url': u 'https://s-medi
+									a-cache-ak0.pinimg.com/736x/58/38/1b/58381b5d2865533b1d4823de78f04766.jpg'
+								}, {
+									u 'url': u 'http://athen
+									apelton.com/wp-content/uploads/2012/11/Beauty-Collective-180.jpg?x90710'
+								}, {
+									u 'url': u 'https://cdn.pi
+									xabay.com/photo/2016/08/25/07/04/baby-girl-1618884_960_720.jpg'
+								}, {
+									u 'url': u 'http://images.deccanchr
+									onicle.com/dc-Cover-m7hljgs08im6q3oor5k0a91u91-20170124180034.Medi.jpeg'
+								}, {
+									u 'url': u 'http://s.huffp
+									ost.com/contributors/andrea-woroch/headshot.jpg'
+								}, {
+									u 'url': u 'http://replygif.net/thumbnail/124.gif'
+								}, {
+									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/99/0e/02/990e02fbe487c4b5fd00d4a5bac1c6f3.jp
+									g'
+								}, {
+									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/23/bb/4c/23bb4cdbbee2f0477609034bc6808db7.
+									jpg'
+								}
+							]
+						},
+						u 'labelAnnotations': [{
+								u 'score': 0.94828284,
+								u 'mid': u '/m/01k74n',
+								u 'description': u 'facial expression'
+							}, {
+								u 'score': 0.94364405,
+								u 'mid': u '/m/019sc',
+								u 'description': u 'black'
+							}, {
+								u 'score': 0.9412487,
+								u 'mid': u '/m/083jv',
+								u 'description': u 'white'
+							}, {
+								u 'score': 0.931602,
+								u 'mid': u '/m/0dzct',
+								u 'description': u 'face'
+							}, {
+								u 'score': 0.93148464,
+								u 'mid': u '/m/01g6gs',
+								u 'description': u 'black and white'
+							}, {
+								u 'score': 0.9163647,
+								u 'mid': u '/m/01g317',
+								u 'description': u 'person'
+							}, {
+								u 'score': 0.89828795,
+								u 'mid': u '/m/03bt1vf',
+								u 'description': u 'woman'
+							}, {
+								u 'score': 0.8438845,
+								u 'mid': u '/m/01dv4h',
+								u 'des
+								cription': u 'portrait'
+							}, {
+								u 'score': 0.8427926,
+								u 'mid': u '/m/05wkw',
+								u 'description': u 'photography'
+							}, {
+								u 'score': 0.8229962,
+								u 'mid': u '/m/02pkb8',
+								u 'description': u 'lady'
+							}, {
+								u 'score': 0.81132334,
+								u 'mid': u '/m/05r655',
+								u 'description': u 'girl'
+							}, {
+								u 'score': 0.80158675,
+								u 'mid': u '/m/01f43',
+								u 'description'
+								: u 'beauty'
+							}, {
+								u 'score': 0.7877699,
+								u 'mid': u '/m/019nj4',
+								u 'description': u 'smile'
+							}, {
+								u 'score': 0.78
+								48597,
+								u 'mid': u '/m/03d49p1',
+								u 'description': u 'monochrome photography'
+							}, {
+								u 'score': 0.77186394,
+								u 'm
+								id': u '/m/01mwkf',
+								u 'description': u 'monochrome'
+							}, {
+								u 'score': 0.75051624,
+								u 'mid': u '/m/0chml9',
+								u 'de
+								scription': u 'portrait photography'
+							}, {
+								u 'score': 0.5722726,
+								u 'mid': u '/m/02tjx',
+								u 'description': u 'e
+								motion'
+							}, {
+								u 'score': 0.5512335,
+								u 'mid': u '/m/0d1pc',
+								u 'description': u 'model'
+							}, {
+								u 'score': 0.5120380
+								5,
+								u 'mid': u '/m/02qbl1m',
+								u 'description': u 'photo shoot'
+							}, {
+								u 'score': 0.5045039,
+								u 'mid': u '/m/015c4z
+								',
+								u 'description': u 'sitting'
+							}
+						],
+						u 'faceAnnotations': [{
+								u 'headwearLikelihood': u 'VERY_UNLIKELY',
+								u 'panAngle': 29.057503,
+								u 'underExposedLikelihood': u 'VERY_UNLIKELY',
+								u 'landmarkingConfidence': 0.7010153,
+								u 'detectionConfidence': 0.68241805,
+								u 'joyLikelihood': u 'VERY_UNLIKELY',
+								u 'landmarks': [{
+										u 'position
+										': {
+											u 'y': 235.8594,
+											u 'x': 415.96838,
+											u 'z': -0.0012335312
+										},
+										u 'type': u 'LEFT_EYE'
+									}, {
+										u 'position': {
+											u 'y
+											': 232.03723,
+											u 'x': 482.34167,
+											u 'z': 36.73446
+										},
+										u 'type': u 'RIGHT_EYE'
+									}, {
+										u 'position': {
+											u 'y': 220.565
+											49,
+											u 'x': 388.00827,
+											u 'z': -9.432873
+										},
+										u 'type': u 'LEFT_OF_LEFT_EYEBROW'
+									}, {
+										u 'position': {
+											u 'y': 220.9
+											1956,
+											u 'x': 437.5837,
+											u 'z': -6.6544194
+										},
+										u 'type': u 'RIGHT_OF_LEFT_EYEBROW'
+									}, {
+										u 'position': {
+											u 'y': 21
+											8.39655,
+											u 'x': 471.68967,
+											u 'z': 11.301473
+										},
+										u 'type': u 'LEFT_OF_RIGHT_EYEBROW'
+									}, {
+										u 'position': {
+											u 'y':
+											213.19968,
+											u 'x': 500.93118,
+											u 'z': 52.579567
+										},
+										u 'type': u 'RIGHT_OF_RIGHT_EYEBROW'
+									}, {
+										u 'position': {
+											u
+											'y': 233.23602,
+											u 'x': 455.09088,
+											u 'z': 3.3513439
+										},
+										u 'type': u 'MIDPOINT_BETWEEN_EYES'
+									}, {
+										u 'position': {
+											u 'y': 282.17706,
+											u 'x': 467.67245,
+											u 'z': -9.889019
+										},
+										u 'type': u 'NOSE_TIP'
+									}, {
+										u 'position': {
+											u 'y': 30
+											9.2575,
+											u 'x': 455.60022,
+											u 'z': 10.275916
+										},
+										u 'type': u 'UPPER_LIP'
+									}, {
+										u 'position': {
+											u 'y': 331.9613,
+											u '
+											x': 453.27252,
+											u 'z': 18.456184
+										},
+										u 'type': u 'LOWER_LIP'
+									}, {
+										u 'position': {
+											u 'y': 319.29053,
+											u 'x': 419.9
+											5288,
+											u 'z': 15.111429
+										},
+										u 'type': u 'MOUTH_LEFT'
+									}, {
+										u 'position': {
+											u 'y': 314.98203,
+											u 'x': 473.11023,
+											u '
+											z': 44.187744
+										},
+										u 'type': u 'MOUTH_RIGHT'
+									}, {
+										u 'position': {
+											u 'y': 318.8153,
+											u 'x': 453.88022,
+											u 'z': 16.7
+											2586
+										},
+										u 'type': u 'MOUTH_CENTER'
+									}, {
+										u 'position': {
+											u 'y': 285.83328,
+											u 'x': 472.20215,
+											u 'z': 28.060177
+										},
+										u 'type': u 'NOSE_BOTTOM_RIGHT'
+									}, {
+										u 'position': {
+											u 'y': 286.797,
+											u 'x': 435.40234,
+											u 'z': 6.9737334
+										},
+										u '
+										type': u 'NOSE_BOTTOM_LEFT'
+									}, {
+										u 'position': {
+											u 'y': 292.9165,
+											u 'x': 458.35522,
+											u 'z': 7.45108
+										},
+										u 'type'
+										: u 'NOSE_BOTTOM_CENTER'
+									}, {
+										u 'position': {
+											u 'y': 233.45897,
+											u 'x': 416.47842,
+											u 'z': -5.837531
+										},
+										u 'type'
+										: u 'LEFT_EYE_TOP_BOUNDARY'
+									}, {
+										u 'position': {
+											u 'y': 237.84956,
+											u 'x': 427.03848,
+											u 'z': 7.2259154
+										},
+										u 'ty
+										pe': u 'LEFT_EYE_RIGHT_CORNER'
+									}, {
+										u 'position': {
+											u 'y': 244.15318,
+											u 'x': 413.2696,
+											u 'z': -0.35893753
+										},
+										u 'type': u 'LEFT_EYE_BOTTOM_BOUNDARY'
+									}, {
+										u 'position': {
+											u 'y': 238.32913,
+											u 'x': 396.9964,
+											u 'z': -1.7570
+											398
+										},
+										u 'type': u 'LEFT_EYE_LEFT_CORNER'
+									}, {
+										u 'position': {
+											u 'y': 238.5144,
+											u 'x': 413.68604,
+											u 'z': -2.76
+											1455
+										},
+										u 'type': u 'LEFT_EYE_PUPIL'
+									}, {
+										u 'position': {
+											u 'y': 229.04782,
+											u 'x': 484.10428,
+											u 'z': 31.324913
+										},
+										u 'type': u 'RIGHT_EYE_TOP_BOUNDARY'
+									}, {
+										u 'position': {
+											u 'y': 232.13815,
+											u 'x': 491.50378,
+											u 'z': 50.17
+											2062
+										},
+										u 'type': u 'RIGHT_EYE_RIGHT_CORNER'
+									}, {
+										u 'position': {
+											u 'y': 239.54845,
+											u 'x': 482.23526,
+											u 'z': 3
+											6.877216
+										},
+										u 'type': u 'RIGHT_EYE_BOTTOM_BOUNDARY'
+									}, {
+										u 'position': {
+											u 'y': 234.82227,
+											u 'x': 465.30563,
+											u 'z': 28.92393
+										},
+										u 'type': u 'RIGHT_EYE_LEFT_CORNER'
+									}, {
+										u 'position': {
+											u 'y': 234.00476,
+											u 'x': 483.145,
+											u 'z': 35.282654
+										},
+										u 'type': u 'RIGHT_EYE_PUPIL'
+									}, {
+										u 'position': {
+											u 'y': 212.03706,
+											u 'x': 415.7709,
+											u 'z'
+											: -13.97293
+										},
+										u 'type': u 'LEFT_EYEBROW_UPPER_MIDPOINT'
+									}, {
+										u 'position': {
+											u 'y': 207.23073,
+											u 'x': 489.13
+											742,
+											u 'z': 26.359087
+										},
+										u 'type': u 'RIGHT_EYEBROW_UPPER_MIDPOINT'
+									}, {
+										u 'position': {
+											u 'y': 265.98245,
+											u '
+											x': 324.182,
+											u 'z': 63.73744
+										},
+										u 'type': u 'LEFT_EAR_TRAGION'
+									}, {
+										u 'position': {
+											u 'y': 255.9818,
+											u 'x': 47
+											7.74423,
+											u 'z': 148.10938
+										},
+										u 'type': u 'RIGHT_EAR_TRAGION'
+									}, {
+										u 'position': {
+											u 'y': 219.00687,
+											u 'x': 456
+											.65076,
+											u 'z': -0.32583275
+										},
+										u 'type': u 'FOREHEAD_GLABELLA'
+									}, {
+										u 'position': {
+											u 'y': 366.5334,
+											u 'x': 447
+											.31897,
+											u 'z': 33.362625
+										},
+										u 'type': u 'CHIN_GNATHION'
+									}, {
+										u 'position': {
+											u 'y': 318.67743,
+											u 'x': 346.1997
+											4,
+											u 'z': 47.59071
+										},
+										u 'type': u 'CHIN_LEFT_GONION'
+									}, {
+										u 'position': {
+											u 'y': 309.65118,
+											u 'x': 484.95044,
+											u 'z': 123.83922
+										},
+										u 'type': u 'CHIN_RIGHT_GONION'
+									}
+								],
+								u 'sorrowLikelihood': u 'VERY_UNLIKELY',
+								u 'surprise
+								Likelihood': u 'VERY_UNLIKELY',
+								u 'tiltAngle': -8.160354,
+								u 'angerLikelihood': u 'VERY_UNLIKELY',
+								u 'boundingPoly': {
+									u 'vertices': [{
+											u 'y': 92,
+											u 'x': 285
+										}, {
+											u 'y': 92,
+											u 'x': 541
+										}, {
+											u 'y': 389,
+											u 'x': 541
+										}, {
+											u 'y
+											': 389,
+											u 'x': 285
+										}
+									]
+								},
+								u 'rollAngle': 0.77636975,
+								u 'blurredLikelihood': u 'VERY_UNLIKELY',
+								u 'fdBounding
+								Poly': {
+									u 'vertices': [{
+											u 'y': 181,
+											u 'x': 354
+										}, {
+											u 'y': 181,
+											u 'x': 528
+										}, {
+											u 'y': 354,
+											u 'x': 528
+										}, {
+											u 'y':
+											354,
+											u 'x': 354
+										}
+									]
+								}
+							}
+						],
+						u 'cropHintsAnnotation': {
+							u 'cropHints': [{
+									u 'confidence': 1,
+									u 'importanceFractio
+									n': 1.09,
+									u 'boundingPoly': {
+										u 'vertices': [{}, {
+												u 'x': 749
+											}, {
+												u 'y': 499,
+												u 'x': 749
+											}, {
+												u 'y': 499
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				}
+			],
+			u 'id': u '356564939'
+		}, {
+			u 'username': u 'instagood',
+			u 'updated': 1491035581,
+			u 'posts': [],
+			u 'id': u
+			'5136815'
+		}, {
+			u 'username': u 'josecabaco',
+			u 'updated': 1491035582,
+			u 'posts': [],
+			u 'id': u '364395'
+		}, {
+			u
+			'username': u 'kissinfashion',
+			u 'updated': 1491035582,
+			u 'posts': [],
+			u 'id': u '528405678'
+		}
+	],
+	u 'success': True
+}

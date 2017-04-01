@@ -5,9 +5,6 @@ f = open('dataset.json')
 data = json.load(f)
 f.close()
 
-_user = 'manhquan233@gmail.com'
-_pass = 'VmJsb83qQBwyuk0PaiyxDrCUgzMZOlrQ'
-
 # urllib.urlretrieve("http://www.gunnerkrigg.com//comics/00000001.jpg", "abc/file1.jpg")
 
 print 'Start Downloading...'
