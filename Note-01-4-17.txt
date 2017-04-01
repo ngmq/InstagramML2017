@@ -1,6 +1,6 @@
 Note ngay 01-4-2017
 
-Đã code file GetNewImages.py để lấy ảnh mới. Kết quả của 
+1) Đã code file GetNewImages.py để lấy ảnh mới. Kết quả của 
 
 r = requests.get('http://challenges.instagram.unpossib.ly/api/live', auth=HTTPBasicAuth(_user, _pass))
 print r.status_code
@@ -223,63 +223,6 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 									u 'description': u 'White'
 								}
 							],
-							u 'visuallySimilarImages': [{
-									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/97/05/5a/97055ac80966420d5da69306fce2cbd9.jpg'
-								}, {
-									u 'url': u 'https://med
-									ia.licdn.com/mpr/mpr/AAEAAQAAAAAAAASoAAAAJDVmNDk0N2JhLTE5YzgtNDY1Yy1hOTBlLTUxMTMxN2UwN2JlMw.jpg'
-								}, {
-									u 'url': u 'http://cdn.storyhive.com/telusproduction/57d654aeb28db.jpg'
-								}, {
-									u 'url': u 'https://s-media-c
-									ache-ak0.pinimg.com/736x/b9/50/75/b95075e00935ceedc461c66ce184bcfb.jpg'
-								}, {
-									u 'url': u 'https://s-media
-									-cache-ak0.pinimg.com/736x/d5/2d/fd/d52dfd51b1a56414434ac651d161c669.jpg'
-								}, {
-									u 'url': u 'https://s-med
-									ia-cache-ak0.pinimg.com/736x/bd/34/13/bd34139f31872e0aed58a6b7d6e60617.jpg'
-								}, {
-									u 'url': u 'http://www.
-									hbs.edu/mba/PublishingImages/people/2012/portrait-project/anuger710x558.jpg'
-								}, {
-									u 'url': u 'https://cd
-									n.pixabay.com/photo/2016/04/12/10/39/portrait-1324072_960_720.jpg'
-								}, {
-									u 'url': u 'https://s-media-cach
-									e-ak0.pinimg.com/736x/de/c3/e3/dec3e37060d3b8b3313b709aa02e9fa2.jpg'
-								}, {
-									u 'url': u 'https://s-media-ca
-									che-ak0.pinimg.com/736x/9d/23/f5/9d23f59f7755d992a0dbcf9aae8ead20.jpg'
-								}, {
-									u 'url': u 'https://s-media-
-									cache-ak0.pinimg.com/736x/fd/ba/7b/fdba7b45d7e05d4a94a8f1ff7f623194.jpg'
-								}, {
-									u 'url': u 'https://s-medi
-									a-cache-ak0.pinimg.com/736x/58/38/1b/58381b5d2865533b1d4823de78f04766.jpg'
-								}, {
-									u 'url': u 'http://athen
-									apelton.com/wp-content/uploads/2012/11/Beauty-Collective-180.jpg?x90710'
-								}, {
-									u 'url': u 'https://cdn.pi
-									xabay.com/photo/2016/08/25/07/04/baby-girl-1618884_960_720.jpg'
-								}, {
-									u 'url': u 'http://images.deccanchr
-									onicle.com/dc-Cover-m7hljgs08im6q3oor5k0a91u91-20170124180034.Medi.jpeg'
-								}, {
-									u 'url': u 'http://s.huffp
-									ost.com/contributors/andrea-woroch/headshot.jpg'
-								}, {
-									u 'url': u 'http://replygif.net/thumbnail/124.gif'
-								}, {
-									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/99/0e/02/990e02fbe487c4b5fd00d4a5bac1c6f3.jp
-									g'
-								}, {
-									u 'url': u 'https://s-media-cache-ak0.pinimg.com/736x/23/bb/4c/23bb4cdbbee2f0477609034bc6808db7.
-									jpg'
-								}
-							]
-						},
 						u 'labelAnnotations': [{
 								u 'score': 0.94828284,
 								u 'mid': u '/m/01k74n',
@@ -352,8 +295,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 							}, {
 								u 'score': 0.5722726,
 								u 'mid': u '/m/02tjx',
-								u 'description': u 'e
-								motion'
+								u 'description': u 'emotion'
 							}, {
 								u 'score': 0.5512335,
 								u 'mid': u '/m/0d1pc',
@@ -732,3 +674,12 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 	],
 	u 'success': True
 }
+
+
+2) File ReadImagesAndExtractData.py: file này sẽ đọc tất cả các ảnh và generate training set, validation set và test set lưu thành file npz.
+Lưu ý là thư mục ảnh được download bằng file DownloadImages.py về và cho vào .gitingore vì dung lượng quá lớn.
+Hiện tại mới chỉ extract data cho beautifuldestinations.
+Các file npz này generate nhanh nên và dung lượng nặng nên cũng cho vào .gitignore (chắc sẽ chuyển files qua teamview)
+
+3) File BuildModel.py: file sẽ đọc 3 data set ở trên (train, validation, test) và build model sau đó save lại 
+(định dạng h5 với keras và pickle với framework khác)
