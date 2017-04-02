@@ -33,21 +33,25 @@ minY = 0.0
 maxX = 0.0
 maxY = 0.0
 
-minX = min(X_train)
-minX = min(minX, min(X_validation))
-minX = min(minX, min(X_test))
+minX = np.min(X_train)
+minX = min(minX, np.min(X_validation))
+minX = min(minX, np.min(X_test))
 
-maxX = max(X_train)
-maxX = max(maxX, max(X_validation))
-maxX = max(maxX, max(X_test))
+maxX = np.max(X_train)
+maxX = max(maxX, np.max(X_validation))
+maxX = max(maxX, np.max(X_test))
 
-minY = min(Y_train)
-minY = min(minY, min(Y_validation))
-minY = min(minY, min(Y_test))
+minY = np.min(Y_train)
+minY = min(minY, np.min(Y_validation))
+minY = min(minY, np.min(Y_test))
 
-maxY = max(Y_train)
-maxY = max(maxY, max(Y_validation))
-maxY = max(maxY, max(Y_test))
+maxY = np.max(Y_train)
+maxY = max(maxY, np.max(Y_validation))
+maxY = max(maxY, np.max(Y_test))
+
+Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
+Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
+Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
 
 """ Note that not all images in train, validation and test set have the same dimensions. 
 For example, running the following snippet:
@@ -105,7 +109,7 @@ model.add(Dense(32))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
-model.add(Activation('relu'))
+model.add(Activation('sigmoid'))
 
 print 'Compiling model...'
 model.compile(loss='mean_squared_error',
@@ -114,13 +118,21 @@ model.compile(loss='mean_squared_error',
 
               
 print 'Fitting model...'
-# model.fit(X_train, Y_train,
-            # batch_size=batch_size,
-            # epochs=epochs,
-            # validation_data=(X_validation, Y_validation),
-            # shuffle=True)
+model.fit(X_train, Y_train,
+            batch_size=batch_size,
+            epochs=epochs,
+            validation_data=(X_validation, Y_validation),
+            shuffle=True)
             
 print 'Evaluating model...'
+""" loss cannot be too big. So we normalized Y to be in range [0, 1] by Y = (Y - minY) / (maxY - minY) 
+and choose sigmoid as output of the MLP so that the output of the whole network will also be in range [0, 1]
+The true prediction should be (maxY - minY) * output + minY.
+
+Try run these two lines to see their difference
+print model.predict(X_test[0:1])
+print Y_test[0:1]
+"""
 
 score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
 print('Test loss:', score[0])
