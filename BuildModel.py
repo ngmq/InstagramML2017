@@ -63,7 +63,7 @@ results in varied shapes: (929, 750), (1349, 1080), (...)
 """
 
 # ## Test correct data
-# plt.imshow(X_train[0], cmap = 'gray')
+# plt.imshow(X_train[0])
 # plt.show()
 
 print 'Done reading data.'
@@ -97,15 +97,15 @@ model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (5, 5), padding='same'))
-model.add(Activation('relu'))
-model.add(Conv2D(64, (5, 5)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model.add(Conv2D(64, (5, 5), padding='same'))
+# model.add(Activation('relu'))
+# model.add(Conv2D(64, (5, 5)))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(32))
+model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))

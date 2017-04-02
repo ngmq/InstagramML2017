@@ -684,4 +684,10 @@ Các file npz này generate nhanh nên và dung lượng nặng nên cũng cho v
 3) File BuildModel.py: file sẽ đọc 3 data set ở trên (train, validation, test) và build model sau đó save lại 
 (định dạng h5 với keras và pickle với framework khác)
 
-4) Xử lý ảnh kích cỡ khác nhau
+4) Xử lý ảnh kích cỡ khác nhau: qua thử nghiệm thì ảnh màu 640 x 640 x 3 cho dung lượng 3 file data chấp nhận được mà không làm mất thông tin
+về màu sắc của ảnh, nên là phương án lựa chọn cuối cùng (có thể test thêm). Ảnh đen trắng grayscale thì dung lượng data khá nhỏ nhưng e là sẽ
+làm mất thông tin quan trọng về màu sắc. Nếu thử nghiệm thấy để ảnh RGB làm cho tốc độ tính toán quá chậm thì sẽ chuyển sang grayscale.
+
+5) Kiến trúc để extract features hiện tại là CNN: đã hoàn thành trong file BuildModel, hiện vẫn đang lấn cấn 2 tham số:
+- Số lượng neurons ở lớp fully connected. Nên để 512 hay 256 hay nhỏ hơn?
+- Có nên thêm 2 lớp Conv2D kích cỡ 5x5 hay không? Đang sợ overfit.
