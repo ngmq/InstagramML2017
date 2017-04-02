@@ -28,6 +28,27 @@ print(len(Y_train))
 print(len(Y_validation))
 print(len(Y_test))
 
+minX = 0.0
+minY = 0.0
+maxX = 0.0
+maxY = 0.0
+
+minX = min(X_train)
+minX = min(minX, min(X_validation))
+minX = min(minX, min(X_test))
+
+maxX = max(X_train)
+maxX = max(maxX, max(X_validation))
+maxX = max(maxX, max(X_test))
+
+minY = min(Y_train)
+minY = min(minY, min(Y_validation))
+minY = min(minY, min(Y_test))
+
+maxY = max(Y_train)
+maxY = max(maxY, max(Y_validation))
+maxY = max(maxY, max(Y_test))
+
 """ Note that not all images in train, validation and test set have the same dimensions. 
 For example, running the following snippet:
 
@@ -48,10 +69,10 @@ print 'Building Model...'
 """ Custom accuracy measurement for regression
 """
 threshold = 0.105
-def point(y_true, y_pred):
-    if K.abs(y_true - y_pred) < y_true * threshold:
-        return 1
-    return 0
+def calc_point(y_true, y_pred):
+    diff = K.abs(y_true - y_pred)
+    maxdiff = y_true * threshold    
+    return K.sum(K.less_equal(diff, maxdiff))
     
 batch_size = 64
 epochs = 200
@@ -80,7 +101,7 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(128))
+model.add(Dense(32))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
@@ -89,17 +110,18 @@ model.add(Activation('relu'))
 print 'Compiling model...'
 model.compile(loss='mean_squared_error',
               optimizer='rmsprop',
-              metrics=['accuracy'])
+              metrics=[calc_point])
 
               
 print 'Fitting model...'
-model.fit(X_train, Y_train,
-            batch_size=batch_size,
-            epochs=epochs,
-            validation_data=(X_validation, Y_validation),
-            shuffle=True)
+# model.fit(X_train, Y_train,
+            # batch_size=batch_size,
+            # epochs=epochs,
+            # validation_data=(X_validation, Y_validation),
+            # shuffle=True)
             
 print 'Evaluating model...'
+
 score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy (points):', score[1])
