@@ -10,6 +10,8 @@ files = os.listdir(path)
 X = list()
 Y = list()
 
+# imgsz = (640, 640)
+
 for f in files:
     """ f is a string with format [index]-[code]-[likes].jpg
     """
@@ -17,7 +19,9 @@ for f in files:
     nlike = int(nlike * 7 / 10) # estimate that 70% of likes of an image comes within first 24 hours
     Y.append(nlike)
     # print nlike
-    img = misc.imread(path + '/' + f, mode='L')
+    img = misc.imread(path + '/' + f)
+    # print img.shape
+    img = misc.imresize(img, (640, 640, 3))
     X.append(img)
     
 

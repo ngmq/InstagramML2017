@@ -6,6 +6,7 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPooling2D
+import keras.backend as K
 
 print 'Reading training, validation and test data.....'
 username = 'beautifuldestinations'
@@ -42,12 +43,22 @@ results in varied shapes: (929, 750), (1349, 1080), (...)
 
 print 'Done reading data.'
 
-print 'Building Model'
-batch_size = 128
+print 'Building Model...'
+
+""" Custom accuracy measurement for regression
+"""
+threshold = 0.105
+def point(y_true, y_pred):
+    if K.abs(y_true - y_pred) < y_true * threshold:
+        return 1
+    return 0
+    
+batch_size = 64
 epochs = 200
+imgsz = 640, 640, 3
 
 model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape = (1, None, None)))
+model.add(Conv2D(32, (3, 3), input_shape = (640, 640, 3)))
 model.add(Activation('relu'))
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
@@ -69,24 +80,28 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(512))
+model.add(Dense(128))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
 model.add(Activation('relu'))
 
-model.compile(loss='categorical_crossentropy',
+print 'Compiling model...'
+model.compile(loss='mean_squared_error',
               optimizer='rmsprop',
               metrics=['accuracy'])
 
+              
+print 'Fitting model...'
 model.fit(X_train, Y_train,
             batch_size=batch_size,
             epochs=epochs,
             validation_data=(X_validation, Y_validation),
             shuffle=True)
             
-score = model.evaluate(x_test, y_test, verbose=0)
+print 'Evaluating model...'
+score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
 print('Test loss:', score[0])
-print('Test accuracy:', score[1])
-
+print('Test accuracy (points):', score[1])
+model.save(username + '.h5')
 

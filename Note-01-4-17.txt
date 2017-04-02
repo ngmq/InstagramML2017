@@ -683,3 +683,5 @@ Các file npz này generate nhanh nên và dung lượng nặng nên cũng cho v
 
 3) File BuildModel.py: file sẽ đọc 3 data set ở trên (train, validation, test) và build model sau đó save lại 
 (định dạng h5 với keras và pickle với framework khác)
+
+4) Xử lý ảnh kích cỡ khác nhau
