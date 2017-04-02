@@ -75,8 +75,9 @@ print 'Building Model...'
 threshold = 0.105
 def calc_point(y_true, y_pred):
     diff = K.abs(y_true - y_pred)
-    maxdiff = y_true * threshold    
-    return K.sum(K.less_equal(diff, maxdiff))
+    maxdiff = y_true + minY / (maxY - minY)
+    maxdiff = maxdiff * threshold
+    return K.mean(K.less_equal(diff, maxdiff))
     
 batch_size = 64
 epochs = 200
