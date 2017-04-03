@@ -12,6 +12,14 @@ print 'Reading training, validation and test data.....'
 username = 'beautifuldestinations'
 path = './' + username
 
+""" 
+beautifuldestinations
+kissinfashion
+instagood
+etdieucrea
+josecabaco
+"""
+
 npzfile = np.load(username + '_train.npz')
 X_train = npzfile['arr_0']
 Y_train = npzfile['arr_1']
@@ -81,10 +89,10 @@ def calc_point(y_true, y_pred):
     
 batch_size = 64
 epochs = 200
-imgsz = 640, 640, 3
+imgsz = 128, 128, 3
 
 model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape = (640, 640, 3)))
+model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
 model.add(Activation('relu'))
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))

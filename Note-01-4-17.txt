@@ -691,3 +691,6 @@ làm mất thông tin quan trọng về màu sắc. Nếu thử nghiệm thấy 
 5) Kiến trúc để extract features hiện tại là CNN: đã hoàn thành trong file BuildModel, hiện vẫn đang lấn cấn 2 tham số:
 - Số lượng neurons ở lớp fully connected. Nên để 512 hay 256 hay nhỏ hơn?
 - Có nên thêm 2 lớp Conv2D kích cỡ 5x5 hay không? Đang sợ overfit.
+
+6) Kích cỡ ảnh 640 x 640 x 3 là quá to và gây lỗi out-of-memory cho GPU. Đây là một vấn đề thực tế đã được đề cập trong note bài giảng của Stanford
+http://cs231n.github.io/convolutional-networks/ (phần memory bottleneck). Việc tiếp theo là sẽ giảm kích cỡ ảnh xuống để chạy được.
