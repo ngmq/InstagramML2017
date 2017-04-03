@@ -694,3 +694,8 @@ làm mất thông tin quan trọng về màu sắc. Nếu thử nghiệm thấy 
 
 6) Kích cỡ ảnh 640 x 640 x 3 là quá to và gây lỗi out-of-memory cho GPU. Đây là một vấn đề thực tế đã được đề cập trong note bài giảng của Stanford
 http://cs231n.github.io/convolutional-networks/ (phần memory bottleneck). Việc tiếp theo là sẽ giảm kích cỡ ảnh xuống để chạy được.
+
+7) Kích cỡ ảnh mới đã train được model nhưng accuracy rất thấp chỉ khoảng 20% mặc dù đã dùng thêm 2 lớp Conv2D 5x5 ở trên. Lý do 1 có thể là 
+bị underfit nhưng lý do này không thuyết phục lắm vì network hiện tại đã khá nặng. Thiếu data cũng làm underfit tuy nhiên 20% thì quá thấp.
+Lý do thứ 2 có thể là bị vanishing gradient vì output của lớp ngoài cùng là hàm sigmoid từ 0 tới 1 mà loss là mean squared error nên độ chênh quá nhỏ.
+Hướng khắc phục: giữ nguyên label Y là số likes thay vì chuyển về 0, 1 như hiện nay. Tìm hiểu xem scale output của CNN trong Keras như thế nào.
