@@ -2,7 +2,7 @@ import os
 import numpy as np
 from scipy import misc
 
-username = 'beautifuldestinations'
+username = 'josecabaco'
 path = './' + username
 
 """ 
@@ -29,7 +29,7 @@ for f in files:
     # print nlike
     img = misc.imread(path + '/' + f)
     # print img.shape
-    img = misc.imresize(img, (640, 640, 3))
+    img = misc.imresize(img, (128, 128, 3))
     X.append(img)
     
 

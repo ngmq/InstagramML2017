@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from scipy import misc
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -114,7 +114,7 @@ model.add(Dropout(0.25))
 # model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(256))
+model.add(Dense(128))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
