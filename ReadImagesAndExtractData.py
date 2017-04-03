@@ -5,6 +5,14 @@ from scipy import misc
 username = 'beautifuldestinations'
 path = './' + username
 
+""" 
+beautifuldestinations
+kissinfashion
+instagood
+etdieucrea
+josecabaco
+"""
+
 files = os.listdir(path)
 
 X = list()
