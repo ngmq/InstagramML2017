@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from scipy import misc
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -81,10 +81,10 @@ def calc_point(y_true, y_pred):
     
 batch_size = 64
 epochs = 200
-imgsz = 640, 640, 3
+imgsz = 128, 128, 3
 
 model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape = (640, 640, 3)))
+model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
 model.add(Activation('relu'))
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
@@ -106,7 +106,7 @@ model.add(Dropout(0.25))
 # model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(256))
+model.add(Dense(128))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1))
