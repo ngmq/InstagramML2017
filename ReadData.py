@@ -38,10 +38,11 @@ print data[1].get("username")
 # print data[4].get("id")
 # print "============================="
 # print type(data[0].get("posts")) # type = list
-p1 = data[1].get("posts")
-for i in range(0, 8):
-    print p1[i].get('instagram').get('code')
-    print p1[i].get('instagram').get('display_src')
+p0 = data[0].get("posts")
+for post in p0:
+    if post.get('instagram').get('likes').get('count') > 20000:
+        print post.get('instagram').get('code')
+        break;
 # print len(p0)
 # print type(p0[0])
 # print p0[0].keys()

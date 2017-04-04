@@ -188,8 +188,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 								}, {
 									u 'entityId': u '/m/02qbl1m',
 									u 'score': 0.5251996,
-									u 'description': u 'Photo
-									shoot'
+									u 'description': u 'Photoshoot'
 								}, {
 									u 'entityId': u '/m/01f43',
 									u 'score': 0.48448032,
@@ -587,8 +586,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 									}
 								],
 								u 'sorrowLikelihood': u 'VERY_UNLIKELY',
-								u 'surprise
-								Likelihood': u 'VERY_UNLIKELY',
+								u 'surpriseLikelihood': u 'VERY_UNLIKELY',
 								u 'tiltAngle': -8.160354,
 								u 'angerLikelihood': u 'VERY_UNLIKELY',
 								u 'boundingPoly': {
@@ -610,8 +608,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 								},
 								u 'rollAngle': 0.77636975,
 								u 'blurredLikelihood': u 'VERY_UNLIKELY',
-								u 'fdBounding
-								Poly': {
+								u 'fdBoundingPoly': {
 									u 'vertices': [{
 											u 'y': 181,
 											u 'x': 354
@@ -633,8 +630,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 						u 'cropHintsAnnotation': {
 							u 'cropHints': [{
 									u 'confidence': 1,
-									u 'importanceFractio
-									n': 1.09,
+									u 'importanceFraction': 1.09,
 									u 'boundingPoly': {
 										u 'vertices': [{}, {
 												u 'x': 749

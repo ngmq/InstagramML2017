@@ -1,13 +1,13 @@
 import os
 import numpy as np
 from scipy import misc
-# import matplotlib.pyplot as plt
-import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-import keras.backend as K
-from keras import optimizers
+import matplotlib.pyplot as plt
+# import keras
+# from keras.models import Sequential
+# from keras.layers import Dense, Dropout, Activation, Flatten
+# from keras.layers import Conv2D, MaxPooling2D
+# import keras.backend as K
+# from keras import optimizers
 
 print 'Reading training, validation and test data.....'
 username = 'kissinfashion'
@@ -66,6 +66,9 @@ maxY = max(maxY, np.max(Y_test))
 # Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
 # Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
 
+print minY
+print maxY
+
 """ Note that not all images in train, validation and test set have the same dimensions. 
 For example, running the following snippet:
 
@@ -81,70 +84,70 @@ results in varied shapes: (929, 750), (1349, 1080), (...)
 
 print 'Done reading data.'
 
-print 'Building Model...'
+# print 'Building Model...'
 
 """ Custom accuracy measurement for regression
 """
-threshold = 0.095
-def calc_point(y_true, y_pred):
-    diff = K.abs(y_true - y_pred)
-    maxdiff = y_true
-    maxdiff = maxdiff * threshold
-    return K.mean(K.less_equal(diff, maxdiff))
+# threshold = 0.095
+# def calc_point(y_true, y_pred):
+    # diff = K.abs(y_true - y_pred)
+    # maxdiff = y_true
+    # maxdiff = maxdiff * threshold
+    # return K.mean(K.less_equal(diff, maxdiff))
     
-batch_size = 16
-epochs = 50
-imgsz = 128, 128, 3
-FC_max_weight = maxY / 256.0
-FC_min_weight = minY / 256.0
+# batch_size = 16
+# epochs = 50
+# imgsz = 128, 128, 3
+# FC_max_weight = maxY / 256.0
+# FC_min_weight = minY / 256.0
 
-model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model = Sequential()
+# model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
+# model.add(Activation('relu'))
+# model.add(Conv2D(32, (3, 3)))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (4, 4), padding='same'))
-model.add(Activation('relu'))
-model.add(Conv2D(64, (4, 4)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model.add(Conv2D(64, (4, 4), padding='same'))
+# model.add(Activation('relu'))
+# model.add(Conv2D(64, (4, 4)))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (5, 5), padding='same'))
-model.add(Activation('relu'))
-model.add(Conv2D(64, (5, 5)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model.add(Conv2D(64, (5, 5), padding='same'))
+# model.add(Activation('relu'))
+# model.add(Conv2D(64, (5, 5)))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
-model.add(Flatten())
+# model.add(Flatten())
 
-model.add(Dense(256))
-model.add(Activation('sigmoid'))
-model.add(Dropout(0.5))
+# model.add(Dense(256))
+# model.add(Activation('sigmoid'))
+# model.add(Dropout(0.5))
 
-ScaleInit = keras.initializers.RandomUniform(minval=FC_min_weight, maxval=FC_max_weight, seed=None)
-model.add(Dense(1, kernel_initializer = ScaleInit))
-model.add(Activation('linear'))
+# ScaleInit = keras.initializers.RandomUniform(minval=FC_min_weight, maxval=FC_max_weight, seed=None)
+# model.add(Dense(1, kernel_initializer = ScaleInit))
+# model.add(Activation('linear'))
 
-print 'Compiling model...'
+# print 'Compiling model...'
 
-sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='mean_squared_error',
-              optimizer=sgd,
-              metrics=[calc_point])
+# sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
+# model.compile(loss='mean_squared_error',
+              # optimizer=sgd,
+              # metrics=[calc_point])
 
               
-print 'Fitting model...'
-model.fit(X_train, Y_train,
-           batch_size=batch_size,
-           epochs=epochs,
-           shuffle=True)
+# print 'Fitting model...'
+# model.fit(X_train, Y_train,
+           # batch_size=batch_size,
+           # epochs=epochs,
+           # shuffle=True)
             
-print 'Evaluating model...'
+# print 'Evaluating model...'
 # print model.predict(X_test[0:10])
 # print Y_test[0:10]
 
@@ -157,8 +160,8 @@ print model.predict(X_test[0:1])
 print Y_test[0:1]
 """
 
-score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
-print('Test loss:', score[0])
-print('Test accuracy (points):', score[1])
-model.save(username + '.h5')
+# score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
+# print('Test loss:', score[0])
+# print('Test accuracy (points):', score[1])
+# model.save(username + '.h5')
 

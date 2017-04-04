@@ -1,0 +1,36 @@
+1) Phát hiện ra một sự thật phũ phàng là với bộ ảnh của kissinfashion thì cái mạng CNN không học được gì cả!!! Khi vừa khởi tạo đã có accuracy là 
+36% và loss là khoảng ~3k. Sau khi train xong vài trăm epochs thì accuracy nhích 2% lên được 38%. Mà đó là đã loại bỏ khả năng vanishing gradients (vì
+labels lúc này không còn nén vào đoạn [0, 1] nữa)
+
+2) Sau một hồi chán nản thì nghĩ ra cách test xem là do data hay là do network. Lấy nguyên xi cái network đấy cho sang học phân loại ký tự số với 
+bộ dữ liệu mnist nổi tiếng, chỉ thay đổi loss function và output của lớp ngoài cùng thành softmax cho hợp với bài toán classification.
+Kết quả: cái network đấy học ngon lành dữ liệu mnist, loss giảm và accuracy tăng rất ổn định. Đấy là chưa cần chuẩn hóa data như code example 
+của keras. Xem file TestNetworkwithMNIST.py
+
+Epoch 36/40
+60000/60000 [==============================] - 10s - loss: 0.0686 - acc: 0.9796     
+Epoch 37/40
+60000/60000 [==============================] - 10s - loss: 0.0674 - acc: 0.9804     
+Epoch 38/40
+60000/60000 [==============================] - 10s - loss: 0.0656 - acc: 0.9804     
+Epoch 39/40
+60000/60000 [==============================] - 10s - loss: 0.0647 - acc: 0.9806     
+Epoch 40/40
+60000/60000 [==============================] - 10s - loss: 0.0640 - acc: 0.9810     
+('Test loss:', 0.035027878072671589)
+('Test accuracy (points):', 0.98860000000000003)
+
+3) Kết luận: có 2 khả năng:
++ Một là mạng CNN mà ta đã thiết kế không có khả năng lấy ra dữ liệu có ích cho regression.
++ Hai là bản thân trong những cái ảnh đấy chẳng có features quái gì có ích cho regression cả, chính vì vậy nên cái CNN mới "hành xử" y hệt 
+như nó vừa mới được khởi tạo random. Features liên quan trực tiếp tới số likes nằm ở dữ liệu json (thời gian đăng ảnh, nội dung từ khóa chứa trong ảnh, 
+diện tích của phần boundingPoly, các dominant colors)
+
+Giải pháp: 
++ Khả năng một thì chịu không biết cách giải quyết vì mạng CNN cấu trúc quanh đi quẩn lại chỉ có thế :)) Chả lẽ tìm một loại network khác.
++ Khả năng hai thì phải quay trở lại nghiên cứu các features về annotations trong file json. Cụ thể là sự liên quan giữa các từ khóa và diện tích
+của phần boundingPoly tới số lượt likes. Một dữ liệu khác quan trọng không kém là thời gian đăng ảnh.
+
+4) Tập trung làm khả năng hai. Bây giờ phải dùng mô hình features của từng ảnh như thế nào? Sau khi có features thì làm gì? Tiếp tục 
+theo đổi parametric model với linear regression hoặc classification, hay là theo đổi nonparametric model? 
+Lưu ý: dùng mathplotlib.hist(Y_output) được một cái xấp xỉ normal distribution (với kissinfashion, nhiều khả năng các acc khác cũng thế).
