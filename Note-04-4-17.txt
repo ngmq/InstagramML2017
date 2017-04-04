@@ -32,5 +32,823 @@ Giải pháp:
 của phần boundingPoly tới số lượt likes. Một dữ liệu khác quan trọng không kém là thời gian đăng ảnh.
 
 4) Tập trung làm khả năng hai. Bây giờ phải dùng mô hình features của từng ảnh như thế nào? Sau khi có features thì làm gì? Tiếp tục 
-theo đổi parametric model với linear regression hoặc classification, hay là theo đổi nonparametric model? 
-Lưu ý: dùng mathplotlib.hist(Y_output) được một cái xấp xỉ normal distribution (với kissinfashion, nhiều khả năng các acc khác cũng thế).
+theo đuổi parametric model với linear regression hoặc classification, hay là theo đổi nonparametric model? 
+Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp xỉ normal distribution (với kissinfashion, nhiều khả năng các acc khác cũng thế).
+
+5) Post lại ở đây các trường dữ liệu trường annotations trong file json mà là quan trọng:
+{
+	u 'textAnnotations': [{
+			u 'locale': u 'no',
+			u 'description': u 'RL\nER\n',
+			u 'boundingPoly': {
+				u 'vertices': [{
+						u 'y': 599,
+						u 'x': 539
+					}, {
+						u 'y': 599,
+						u 'x': 672
+					}, {
+						u 'y': 1129,
+						u 'x': 672
+					}, {
+						u 'y': 1129,
+						u 'x': 539
+					}
+				]
+			}
+		}, {
+			u 'descriptio
+			n': u 'RL',
+			u 'boundingPoly': {
+				u 'vertices': [{
+						u 'y': 600,
+						u 'x': 539
+					}, {
+						u 'y': 599,
+						u 'x': 562
+					}, {
+						u 'y': 620,
+						u 'x': 563
+					}, {
+						u 'y': 621,
+						u 'x': 540
+					}
+				]
+			}
+		}, {
+			u 'description': u 'ER',
+			u 'boundingPoly': {
+				u 'vertices': [{
+						u 'y': 1129,
+						u 'x': 655
+					}, {
+						u 'y': 1110,
+						u 'x': 655
+					}, {
+						u 'y': 1110,
+						u 'x': 672
+					}, {
+						u 'y': 1129,
+						u 'x': 672
+					}
+				]
+			}
+		}
+	],
+	u 'webDetection': {
+		u 'webEntities': [{
+				u 'entityId': u '/m/0hgr
+				6',
+				u 'score': 1.0520141,
+				u 'description': u 'Denim'
+			}, {
+				u 'entityId': u '/m/09j5n',
+				u 'score': 0.8894137,
+				u 'description': u 'Footwear'
+			}, {
+				u 'entityId': u '/m/0fly7',
+				u 'score': 0.75156915,
+				u 'description': u 'Jeans'
+			}, {
+				u 'entityId': u '/m/047vlmn',
+				u 'score': 0.70463616,
+				u 'description': u 'Outerwear'
+			}, {
+				u 'entityId': u '/m/04lbp',
+				u 'score': 0.6537961,
+				u 'description': u 'Leathe
+				r'
+			}, {
+				u 'entityId': u '/m/091410',
+				u 'score': 0.6439931,
+				u 'description': u 'Collar'
+			}, {
+				u 'entityId': u '/m/01g5v',
+				u 'score': 0.5339365,
+				u 'description': u 'Blue'
+			}, {
+				u 'entityId': u '/m/02qbl1m',
+				u 'score': 0.46752688,
+				u 'description': u 'Photo shoot'
+			}, {
+				u 'entityId': u '/m/0hwky',
+				u 'score': 0.45500797,
+				u 'description': u 'Pattern'
+			}, {
+				u 'entityId': u '/m/05wkw',
+				u 'score': 0.201
+				63,
+				u 'description': u 'Photography'
+			}
+		],
+	u 'labelAnnotations': [{
+			u 'score': 0.92466015,
+			u 'mid': u '/m/09j2d',
+			u 'description': u 'clothing'
+		}, {
+			u 'score': 0.9167078,
+			u 'mid': u '/m/01g5v',
+			u 'description': u 'blue'
+		}, {
+			u 'score': 0.87708014,
+			u 'mid': u '/m/0hg
+			r6',
+			u 'description': u 'denim'
+		}, {
+			u 'score': 0.7925373,
+			u 'mid': u '/m/09j5n',
+			u 'description': u 'footwear'
+		}, {
+			u 'score': 0.7273432,
+			u 'mid': u '/m/0fly7',
+			u 'description': u 'jeans'
+		}, {
+			u 'score': 0.7036129,
+			u 'mid': u '/m/047vlmn',
+			u 'description': u 'outerwear'
+		}, {
+			u 'score': 0.6653372,
+			u 'mid': u '/m/0hwky',
+			u 'description': u 'pattern'
+		}, {
+			u 'score': 0.6117535,
+			u 'mid': u '/m/01
+			txr2',
+			u 'description': u 'spring'
+		}, {
+			u 'score': 0.581614,
+			u 'mid': u '/m/0dnr7',
+			u 'description': u 'textile'
+		}, {
+			u 'score': 0.54396313,
+			u 'mid': u '/m/02qbl1m',
+			u 'description': u 'photo shoot'
+		}, {
+			u 'score': 0.53856546,
+			u 'mid': u '/m/04lbp',
+			u 'description': u 'leather'
+		}, {
+			u 'score': 0.5053793,
+			u 'mid': u '/m/091410',
+			u 'description': u 'collar'
+		}
+	],
+	u 'imagePropertiesAnnotation': {
+		u 'dominantColors': {
+			u 'colors': [{
+					u 'color': {
+						u 'blue': 73,
+						u 'green': 46,
+						u 'red': 41
+					},
+					u 'pixelFraction': 0.019666666,
+					u 'score': 0.14772254
+				}, {
+					u 'color': {
+						u 'blue': 105,
+						u 'green': 52,
+						u 'red': 39
+					},
+					u 'pixelFraction': 0.011388889,
+					u 'score': 0.12077511
+				}, {
+					u 'color': {
+						u 'blue': 232,
+						u 'green': 203,
+						u 'red': 196
+					},
+					u 'pixelFraction': 0.008944444,
+					u 'score': 0.10415843
+				}, {
+					u 'c
+					olor': {
+						u 'blue': 128,
+						u 'green': 80,
+						u 'red': 54
+					},
+					u 'pixelFraction': 0.0044444446,
+					u 'score': 0.056508508
+				}, {
+					u 'color': {
+						u 'blue': 49,
+						u 'green': 27,
+						u 'red': 26
+					},
+					u 'pixelFraction': 0.008388889,
+					u 'score': 0.06794182
+				}, {
+					u 'color': {
+						u 'blue': 35,
+						u 'green': 27,
+						u 'red': 33
+					},
+					u 'pixelFraction': 0.014944444,
+					u 'score': 0.05597589
+				}, {
+					u 'color': {
+						u 'blue': 167,
+						u 'green': 118,
+						u '
+						red': 75
+					},
+					u 'pixelFraction': 0.003888889,
+					u 'score': 0.055208605
+				}, {
+					u 'color': {
+						u 'blue': 248,
+						u 'green': 220,
+						u 'red': 211
+					},
+					u 'pixelFraction': 0.006666667,
+					u 'score': 0.052503172
+				}, {
+					u 'color': {
+						u 'blue': 50,
+						u 'green': 41,
+						u 'red': 47
+					},
+					u 'pixelFraction': 0.023777777,
+					u 'score': 0.04507182
+				}, {
+					u 'color': {
+						u 'blue': 129,
+						u 'green': 72,
+						u 'red': 53
+					},
+					u 'pixelFraction': 0.0032222222,
+					u 'score': 0.040355224
+				}
+			]
+		}
+	},
+	u 'faceAnnotations': [{
+			u 'headwearLikelihood': u 'VERY_UNLIKELY',
+			u 'panAngle': -33.19205,
+			u 'underExposedLikelihood': u 'VERY_UNLIKELY',
+			u 'landmarkingConfidence': 0.3959091,
+			u 'detectionConfidence': 0.98334455,
+			u 'joyLikelihood': u 'POSSIBLE',
+			u 'landmarks': [{
+					u 'position': {
+						u 'y': 246.23662,
+						u 'x': 542.5395,
+						u 'z': -0.0005035389
+					},
+					u 'typ
+					e': u 'LEFT_EYE'
+				}, {
+					u 'position': {
+						u 'y': 246.37659,
+						u 'x': 575.9755,
+						u 'z': -21.965136
+					},
+					u 'type': u 'RIGHT_EYE'
+				}, {
+					u 'position': {
+						u 'y': 236.30128,
+						u 'x': 533.1616,
+						u 'z': 10.474099
+					},
+					u 'type': u 'LEFT_OF_LEFT_EYEBROW'
+				}, {
+					u 'position': {
+						u 'y': 236.72673,
+						u 'x': 546.92706,
+						u 'z': -12.533951
+					},
+					u 'type': u 'RIGHT_OF_LEFT_EYEBROW'
+				}, {
+					u 'position': {
+						u 'y': 236.30252,
+						u 'x': 563.2146,
+						u 'z': -23.40556
+					},
+					u 'type': u 'LEFT_OF_RIGHT_EYEBROW'
+				}, {
+					u 'position': {
+						u 'y': 237.55087,
+						u 'x': 591.8261,
+						u 'z': -26.594667
+					},
+					u 'type': u 'RIGHT_OF_RIGHT_EYEBROW'
+				}, {
+					u 'position': {
+						u 'y': 244.11862,
+						u 'x': 554.0805,
+						u 'z': -18.329102
+					},
+					u 'type': u 'MIDPOINT_BETWEEN_EYES'
+				}, {
+					u 'position': {
+						u 'y': 269.29486,
+						u 'x': 549.19244,
+						u 'z': -27.465162
+					},
+					u 'type': u 'NOSE_TIP'
+				}, {
+					u 'pos
+					ition': {
+						u 'y': 283.80878,
+						u 'x': 553.5059,
+						u 'z': -19.238087
+					},
+					u 'type': u 'UPPER_LIP'
+				}, {
+					u 'position': {
+						u 'y': 296.05304,
+						u 'x': 555.20734,
+						u 'z': -16.522245
+					},
+					u 'type': u 'LOWER_LIP'
+				}, {
+					u 'position': {
+						u 'y': 289.16705,
+						u 'x': 546.5997,
+						u 'z': -1.3651658
+					},
+					u 'type': u 'MOUTH_LEFT'
+				}, {
+					u 'position': {
+						u 'y': 289.4196,
+						u 'x': 573.9581,
+						u 'z': -18.652729
+					},
+					u 'type': u 'MOUTH_RIGHT'
+				}, {
+					u 'position': {
+						u 'y': 289.6537,
+						u 'x': 555.3022,
+						u 'z': -16.541826
+					},
+					u 'type': u 'MOUTH_CENTER'
+				}, {
+					u 'position': {
+						u 'y': 273.72083,
+						u 'x': 564.18164,
+						u 'z': -20.30896
+					},
+					u 'type': u 'NOSE_BOTTOM_RIGHT'
+				}, {
+					u 'position': {
+						u 'y': 271.639,
+						u 'x': 547.2392,
+						u 'z': -8.201385
+					},
+					u 'type': u 'NOSE_BOTTOM_LEFT'
+				}, {
+					u 'position': {
+						u 'y': 275.16675,
+						u 'x': 552.7997,
+						u 'z': -19.630283
+					},
+					u 'typ
+					e': u 'NOSE_BOTTOM_CENTER'
+				}, {
+					u 'position': {
+						u 'y': 243.4238,
+						u 'x': 541.03345,
+						u 'z': -2.3312976
+					},
+					u 'type': u 'LEFT_EYE_TOP_BOUNDARY'
+				}, {
+					u 'position': {
+						u 'y': 246.6395,
+						u 'x': 549.30347,
+						u 'z': -4.2501917
+					},
+					u 'type': u 'LEFT_EYE_RIGHT_CORNER'
+				}, {
+					u 'position': {
+						u 'y': 248.90768,
+						u 'x': 542.3298,
+						u 'z': -0.18727535
+					},
+					u 'type': u 'LEFT_EYE_BOTTOM_BOUNDARY'
+				}, {
+					u 'position': {
+						u 'y'
+						: 246.1155,
+						u 'x': 537.7604,
+						u 'z': 7.60719
+					},
+					u 'type': u 'LEFT_EYE_LEFT_CORNER'
+				}, {
+					u 'position': {
+						u 'y': 246.18042,
+						u 'x': 541.44275,
+						u 'z': -0.41695586
+					},
+					u 'type': u 'LEFT_EYE_PUPIL'
+				}, {
+					u 'position': {
+						u 'y': 244.02834,
+						u 'x': 574.98413,
+						u 'z': -24.540003
+					},
+					u 'type': u 'RIGHT_EYE_TOP_BOUNDARY'
+				}, {
+					u 'position': {
+						u 'y': 246.96275,
+						u 'x': 585.27325,
+						u 'z': -23.45072
+					},
+					u 'type': u '
+					RIGHT_EYE_RIGHT_CORNER'
+				}, {
+					u 'position': {
+						u 'y': 249.38931,
+						u 'x': 576.21014,
+						u 'z': -22.367268
+					},
+					u 'type': u 'RIGHT_EYE_BOTTOM_BOUNDARY'
+				}, {
+					u 'position': {
+						u 'y': 247.46332,
+						u 'x': 569.4344,
+						u 'z': -17.507343
+					},
+					u 'type': u 'RIGHT_EYE_LEFT_CORNER'
+				}, {
+					u 'position': {
+						u 'y': 246.81488,
+						u 'x': 576.2177,
+						u 'z': -23.268572
+					},
+					u 'type': u 'RIGHT_EYE_PUPIL'
+				}, {
+					u 'position': {
+						u 'y': 231.6
+						2616,
+						u 'x': 538.49457,
+						u 'z': -3.412827
+					},
+					u 'type': u 'LEFT_EYEBROW_UPPER_MIDPOINT'
+				}, {
+					u 'position': {
+						u 'y': 232.25444,
+						u 'x': 575.3722,
+						u 'z': -27.51284
+					},
+					u 'type': u 'RIGHT_EYEBROW_UPPER_MIDPOINT'
+				}, {
+					u 'position': {
+						u 'y': 264.48328,
+						u 'x': 548.3193,
+						u 'z': 56.96667
+					},
+					u 'type': u 'LEFT_EAR_TRAGION'
+				}, {
+					u 'position': {
+						u 'y': 265.90225,
+						u 'x': 628.2734,
+						u 'z': 6.7918506
+					},
+					u 'type
+					': u 'RIGHT_EAR_TRAGION'
+				}, {
+					u 'position': {
+						u 'y': 236.39679,
+						u 'x': 554.30096,
+						u 'z': -19.260475
+					},
+					u 'type': u 'FOREHEAD_GLABELLA'
+				}, {
+					u 'position': {
+						u 'y': 314.75497,
+						u 'x': 556.6762,
+						u 'z': -11.709308
+					},
+					u 'type': u 'CHIN_GNATHION'
+				}, {
+					u 'position': {
+						u 'y': 290.7637,
+						u 'x': 543.0646,
+						u 'z': 41.493874
+					},
+					u 'type': u 'CHIN_LEFT_GONION'
+				}, {
+					u 'position': {
+						u 'y': 292.15375,
+						u 'x': 613.2
+						185,
+						u 'z': -4.433891
+					},
+					u 'type': u 'CHIN_RIGHT_GONION'
+				}
+			],
+			u 'sorrowLikelihood': u 'VERY_UNLIKELY',
+			u 'surpriseLikelihood': u 'VERY_UNLIKELY',
+			u 'tiltAngle': -1.4389083,
+			u 'angerLikelihood': u 'VERY_UNLIKELY',
+			u 'boundingPoly': {
+				u 'vertices': [{
+						u 'y': 174,
+						u 'x': 512
+					}, {
+						u 'y': 174,
+						u 'x': 648
+					}, {
+						u 'y': 331,
+						u 'x': 648
+					}, {
+						u 'y': 331,
+						u 'x': 512
+					}
+				]
+			},
+			u 'rollAngle': 0.07716874,
+			u 'blurredLikelihood': u 'VERY_UNLIKELY',
+			u 'fdBoundingPoly': {
+				u 'vertices': [{
+						u 'y': 210,
+						u 'x': 523
+					}, {
+						u 'y': 210,
+						u 'x': 630
+					}, {
+						u 'y': 318,
+						u 'x': 630
+					}, {
+						u 'y': 318,
+						u 'x': 523
+					}
+				]
+			}
+		}
+	],
+	u 'fullTextAnnotation': {
+		u 'text': u 'RL\nER\n',
+		u 'pages': [{
+				u 'width': 1080,
+				u 'property': {
+					u 'detectedLanguages': [{
+							u 'languageCode': u 'no'
+						}
+					]
+				},
+				u 'blocks': [{
+						u 'boundingBox': {
+							u 'vertices': [{
+									u 'y':
+									600,
+									u 'x': 539
+								}, {
+									u 'y': 599,
+									u 'x': 562
+								}, {
+									u 'y': 620,
+									u 'x': 563
+								}, {
+									u 'y': 621,
+									u 'x': 540
+								}
+							]
+						},
+						u 'blockType': u 'TEXT',
+						u 'property': {
+							u 'detectedLanguages': [{
+									u 'languageCode': u 'uz'
+								}
+							]
+						},
+						u 'paragraphs': [{
+								u 'boundingBox': {
+									u 'vertices': [{
+											u 'y': 599,
+											u 'x': 539
+										}, {
+											u 'y': 599,
+											u 'x': 563
+										}, {
+											u 'y': 621,
+											u 'x': 563
+										}, {
+											u 'y': 621,
+											u 'x': 539
+										}
+									]
+								},
+								u 'property': {
+									u 'detectedLanguages':
+									[{
+											u 'languageCode': u 'uz'
+										}
+									]
+								},
+								u 'words': [{
+										u 'boundingBox': {
+											u 'vertices': [{
+													u 'y': 600,
+													u 'x': 539
+												}, {
+													u 'y': 599,
+													u 'x': 562
+												}, {
+													u 'y': 620,
+													u 'x': 563
+												}, {
+													u 'y': 621,
+													u 'x': 540
+												}
+											]
+										},
+										u 'symbols': [{
+												u 'boundingBox': {
+													u 'vertices': [{
+															u 'y': 600,
+															u 'x': 539
+														}, {
+															u 'y': 600,
+															u 'x': 549
+														}, {
+															u 'y': 621,
+															u 'x': 550
+														}, {
+															u 'y': 621,
+															u 'x': 540
+														}
+													]
+												},
+												u 'text': u 'R',
+												u 'property': {
+													u 'detectedLanguag
+													es': [{
+															u 'languageCode': u 'no'
+														}
+													]
+												}
+											}, {
+												u 'boundingBox': {
+													u 'vertices': [{
+															u 'y': 599,
+															u 'x': 551
+														}, {
+															u 'y': 599,
+															u 'x': 562
+														}, {
+															u 'y': 620,
+															u 'x': 563
+														}, {
+															u 'y': 620,
+															u 'x': 552
+														}
+													]
+												},
+												u 'text': u 'L',
+												u 'property': {
+													u 'detectedBreak': {
+														u 'type': u 'EOL_SURE_SPACE'
+													},
+													u 'detectedLanguages': [{
+															u 'languageCode': u 'no'
+														}
+													]
+												}
+											}
+										],
+										u 'property': {
+											u 'detectedLanguages': [{
+													u 'languageCode': u 'uz'
+												}
+											]
+										}
+									}
+								]
+							}
+						]
+					}, {
+						u 'boundingBox': {
+							u 'vertices': [{
+									u 'y': 1110,
+									u 'x': 655
+								}, {
+									u 'y': 1110,
+									u 'x': 672
+								}, {
+									u 'y': 1129,
+									u 'x': 672
+								}, {
+									u 'y': 1129,
+									u 'x': 655
+								}
+							]
+						},
+						u 'blockType': u 'TEXT',
+						u 'property': {
+							u 'detectedLanguages': [{
+									u 'languageCode': u 'no'
+								}
+							]
+						},
+						u 'paragraphs': [{
+								u 'boundingBox': {
+									u 'vertices': [{
+											u 'y': 1110,
+											u 'x': 655
+										}, {
+											u 'y': 1110,
+											u 'x': 672
+										}, {
+											u 'y': 1129,
+											u 'x': 672
+										}, {
+											u 'y': 112
+											9,
+											u 'x': 655
+										}
+									]
+								},
+								u 'property': {
+									u 'detectedLanguages': [{
+											u 'languageCode': u 'no'
+										}
+									]
+								},
+								u 'words': [{
+										u 'boundingBox': {
+											u 'vertices': [{
+													u 'y': 1129,
+													u 'x': 655
+												}, {
+													u 'y': 1110,
+													u 'x': 655
+												}, {
+													u 'y': 1110,
+													u 'x': 672
+												}, {
+													u 'y': 1129,
+													u 'x': 672
+												}
+											]
+										},
+										u 'symbols': [{
+												u 'boundingBox': {
+													u 'vertices': [{
+															u 'y': 1129,
+															u 'x': 655
+														}, {
+															u 'y': 1110,
+															u 'x': 655
+														}, {
+															u 'y': 1110,
+															u 'x': 662
+														}, {
+															u 'y': 1129,
+															u 'x': 662
+														}
+													]
+												},
+												u 'text': u 'E',
+												u 'property': {
+													u 'detectedLanguages': [{
+															u 'languageCode': u 'no'
+														}
+													]
+												}
+											}, {
+												u 'boundingBox': {
+													u 'vertices': [{
+															u 'y': 1129,
+															u 'x': 664
+														}, {
+															u 'y': 1110,
+															u 'x': 664
+														}, {
+															u 'y': 1110,
+															u 'x': 672
+														}, {
+															u 'y': 1129,
+															u 'x': 672
+														}
+													]
+												},
+												u 'text': u 'R',
+												u 'property': {
+													u 'detectedBreak': {
+														u 'type': u 'EOL_SURE_SPACE'
+													},
+													u 'detectedLanguages': [{
+															u 'languageCode': u 'no'
+														}
+													]
+												}
+											}
+										],
+										u
+										'property': {
+											u 'detectedLanguages': [{
+													u 'languageCode': u 'no'
+												}
+											]
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				u 'height': 1349
+			}
+		]
+	},
+}
