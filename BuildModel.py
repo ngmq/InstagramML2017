@@ -58,13 +58,13 @@ maxY = np.max(Y_train)
 maxY = max(maxY, np.max(Y_validation))
 maxY = max(maxY, np.max(Y_test))
 
-# X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
-# X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
-# X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
+X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
+X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
+X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
 
-# Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
-# Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
-# Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
+Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
+Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
+Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
 
 print minY
 print maxY
@@ -146,22 +146,3 @@ print 'Done reading data.'
            # batch_size=batch_size,
            # epochs=epochs,
            # shuffle=True)
-            
-# print 'Evaluating model...'
-# print model.predict(X_test[0:10])
-# print Y_test[0:10]
-
-""" loss cannot be too big. So we normalized Y to be in range [0, 1] by Y = (Y - minY) / (maxY - minY) 
-and choose sigmoid as output of the MLP so that the output of the whole network will also be in range [0, 1]
-The true prediction should be (maxY - minY) * output + minY.
-
-Try run these two lines to see their difference
-print model.predict(X_test[0:1])
-print Y_test[0:1]
-"""
-
-# score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
-# print('Test loss:', score[0])
-# print('Test accuracy (points):', score[1])
-# model.save(username + '.h5')
-
