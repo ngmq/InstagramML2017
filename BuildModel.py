@@ -10,7 +10,7 @@ import keras.backend as K
 from keras import optimizers
 
 print 'Reading training, validation and test data.....'
-username = 'beautifuldestinations'
+username = 'kissinfashion'
 path = './' + username
 
 """ 
@@ -58,9 +58,9 @@ maxY = np.max(Y_train)
 maxY = max(maxY, np.max(Y_validation))
 maxY = max(maxY, np.max(Y_test))
 
-X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
-X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
-X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
+# X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
+# X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
+# X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
 
 Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
 Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
@@ -85,38 +85,38 @@ print 'Building Model...'
 
 """ Custom accuracy measurement for regression
 """
-threshold = 0.105
+threshold = 0.095
 def calc_point(y_true, y_pred):
     diff = K.abs(y_true - y_pred)
-    maxdiff = y_true + minY / (maxY - minY)
+    maxdiff = y_true +  minY / (maxY - minY)
     maxdiff = maxdiff * threshold
     return K.mean(K.less_equal(diff, maxdiff))
     
-batch_size = 4
+batch_size = 16
 epochs = 50
 imgsz = 128, 128, 3
 
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
-model.add(Activation('relu'))
+model.add(Activation('tanh'))
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Conv2D(64, (4, 4), padding='same'))
-model.add(Activation('relu'))
+model.add(Activation('tanh'))
 model.add(Conv2D(64, (4, 4)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (5, 5), padding='same'))
-model.add(Activation('relu'))
-model.add(Conv2D(64, (5, 5)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model.add(Conv2D(64, (5, 5), padding='same'))
+# model.add(Activation('tanh'))
+# model.add(Conv2D(64, (5, 5)))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
 model.add(Flatten())
 model.add(Dense(256))
@@ -127,8 +127,8 @@ model.add(Activation('sigmoid'))
 
 print 'Compiling model...'
 
-sgd = optimizers.SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='mean_squared_error',
+sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='binary_crossentropy',
               optimizer=sgd,
               metrics=[calc_point])
 
@@ -137,10 +137,12 @@ print 'Fitting model...'
 model.fit(X_train, Y_train,
             batch_size=batch_size,
             epochs=epochs,
-            validation_data=(X_validation, Y_validation),
             shuffle=True)
             
 print 'Evaluating model...'
+# print model.predict(X_test[0:10])
+# print Y_test[0:10]
+
 """ loss cannot be too big. So we normalized Y to be in range [0, 1] by Y = (Y - minY) / (maxY - minY) 
 and choose sigmoid as output of the MLP so that the output of the whole network will also be in range [0, 1]
 The true prediction should be (maxY - minY) * output + minY.

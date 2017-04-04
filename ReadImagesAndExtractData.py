@@ -2,7 +2,7 @@ import os
 import numpy as np
 from scipy import misc
 
-username = 'beautifuldestinations'
+username = 'kissinfashion'
 path = './' + username
 
 """ 
