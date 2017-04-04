@@ -58,13 +58,13 @@ maxY = np.max(Y_train)
 maxY = max(maxY, np.max(Y_validation))
 maxY = max(maxY, np.max(Y_test))
 
-# X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
-# X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
-# X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
+X_train = (0.0 + X_train - minX) / (0.0 + maxX - minX)
+X_validation = (0.0 + X_validation - minX) / (0.0 + maxX - minX)
+X_test = (0.0 + X_test - minX) / (0.0 + maxX - minX)
 
-# Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
-# Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
-# Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
+Y_train = (0.0 + Y_train - minY) / (0.0 + maxY - minY)
+Y_validation = (0.0 + Y_validation - minY) / (0.0 + maxY - minY)
+Y_test = (0.0 + Y_test - minY) / (0.0 + maxY - minY)
 
 """ Note that not all images in train, validation and test set have the same dimensions. 
 For example, running the following snippet:
@@ -88,61 +88,63 @@ print 'Building Model...'
 threshold = 0.095
 def calc_point(y_true, y_pred):
     diff = K.abs(y_true - y_pred)
+    # maxdiff = y_true + minY / (maxY - minY)
     maxdiff = y_true
     maxdiff = maxdiff * threshold
     return K.mean(K.less_equal(diff, maxdiff))
     
-batch_size = 16
-epochs = 50
+batch_size = 8
+epochs = 40
 imgsz = 128, 128, 3
 FC_max_weight = maxY / 256.0
 FC_min_weight = minY / 256.0
 
+
+print minY, maxY
+
 model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3)))
+model.add(Conv2D(64, (2, 2), input_shape = (128, 128, 3)))
 model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
+model.add(Conv2D(64, (2, 2)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (4, 4), padding='same'))
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(Activation('relu'))
+model.add(Conv2D(64, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3, 3)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (4,4), padding='same'))
 model.add(Activation('relu'))
 model.add(Conv2D(64, (4, 4)))
 model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
-
-model.add(Conv2D(64, (5, 5), padding='same'))
-model.add(Activation('relu'))
-model.add(Conv2D(64, (5, 5)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(MaxPooling2D(pool_size=(4, 4)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
 
 model.add(Dense(256))
-model.add(Activation('sigmoid'))
-model.add(Dropout(0.5))
+model.add(Activation('tanh'))
 
-ScaleInit = keras.initializers.RandomUniform(minval=FC_min_weight, maxval=FC_max_weight, seed=None)
-model.add(Dense(1, kernel_initializer = ScaleInit))
-model.add(Activation('linear'))
+ScaleInit = keras.initializers.RandomUniform(minval=FC_max_weight, maxval=FC_max_weight, seed=None)
+model.add(Dense(1))
+model.add(Activation('sigmoid'))
+
+model.summary()
 
 print 'Compiling model...'
 
-sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = optimizers.SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error',
               optimizer=sgd,
               metrics=[calc_point])
 
               
 print 'Fitting model...'
-model.fit(X_train, Y_train,
-           batch_size=batch_size,
-           epochs=epochs,
-           shuffle=True)
+model.fit(X_train, Y_train,batch_size=batch_size,epochs=epochs,  shuffle=True)
             
 print 'Evaluating model...'
 # print model.predict(X_test[0:10])
