@@ -1,9 +1,9 @@
 import json
 import ijson
 
-f = open('dataset.json')
-data = json.load(f)
-f.close()
+# f = open('dataset.json')
+# data = json.load(f)
+# f.close()
 
 # print type(data)
 # print len(data)
@@ -25,7 +25,7 @@ f.close()
 # print data[4].keys()
 # print "============================="
 # print type(data[0].get("username"))
-print data[0].get("username")
+# print data[0].get("username")
 # print data[1].get("username")
 # print data[2].get("username")
 # print data[3].get("username")
@@ -69,3 +69,13 @@ print data[0].get("username")
         # if is_video:
             # print '******'
             
+import urllib
+import requests
+from requests.auth import HTTPBasicAuth
+
+post_uri = "http://challenges.instagram.unpossib.ly/api/submissions"
+_user = 'manhquan233@gmail.com'
+_pass = 'VmJsb83qQBwyuk0PaiyxDrCUgzMZOlrQ'
+r = requests.post(post_uri, data={"post" : "1483235252197708444", "likes" : 128}, auth = HTTPBasicAuth(_user, _pass))
+print r.status_code
+print r.reason
