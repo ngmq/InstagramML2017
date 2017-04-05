@@ -218,8 +218,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 					u 'pixelFraction': 0.008944444,
 					u 'score': 0.10415843
 				}, {
-					u 'c
-					olor': {
+					u 'color': {
 						u 'blue': 128,
 						u 'green': 80,
 						u 'red': 54

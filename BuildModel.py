@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from scipy import misc
+import matplotlib.pyplot as plt
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -24,7 +25,7 @@ X = npzfile['arr_0']
 Y = npzfile['arr_1']
 
 N = len(Y)
-train_size = int(N * 95 / 100)
+train_size = int(N * 90 / 100)
 X_train = X[:train_size]
 Y_train = Y[:train_size]
 X_test = X[train_size:]
@@ -69,27 +70,8 @@ def calc_point(y_true, y_pred):
     Y_pred = y_pred * (maxY - minY) + minY
     diff = K.abs(Y_true - Y_pred)
     maxdiff = Y_true * threshold
-    return K.mean(K.less_equal(diff, maxdiff), axis=-1)
+    return K.mean(K.less_equal(diff, maxdiff))
     
-batch_size = 8
-epochs = 200
-ndimension = len(X[0])
-
-model = Sequential()
-model.add(Dense(30, input_shape = (ndimension, )))
-model.add(Activation('relu'))
-model.add(Dropout(0.25))
-model.add(Dense(30))
-model.add(Activation('relu'))
-model.add(Dropout(0.25))
-model.add(Dense(1))
-model.add(Activation('sigmoid'))
-
-print 'Compiling model...'
-
-sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-
-
 def calc_loss(y_true, y_pred):
     Y_true = y_true * (maxY - minY) + minY
     Y_pred = y_pred * (maxY - minY) + minY
@@ -97,16 +79,32 @@ def calc_loss(y_true, y_pred):
     maxdiff = Y_true * threshold
     mask = K.less_equal(diff, maxdiff)
     
-    diffy = K.abs(y_true - y_pred) * 0.5
+    diffy = K.abs(y_true - y_pred) ** 2
     import tensorflow as tf
-    return K.mean(tf.boolean_mask(diffy, mask), axis=-1)
+    return K.mean(tf.boolean_mask(diffy, mask))
+    
+batch_size = 16
+epochs = 30
+ndimension = len(X[0])
 
-# model.compile(loss='mean_squared_error', optimizer=sgd, metrics=[calc_point])
+model = Sequential()
+model.add(Dense(30, input_shape = (ndimension, )))
+model.add(Activation('relu'))
+model.add(Dropout(0.25))
+model.add(Dense(20))
+model.add(Activation('tanh'))
+model.add(Dropout(0.25))
+model.add(Dense(1))
+model.add(Activation('sigmoid'))
+
+print 'Compiling model...'
+
+sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss=calc_loss, optimizer=sgd, metrics=[calc_point])
 
               
 print 'Fitting model...'
-model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs, validation_data=(X_test, Y_test))
+# model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs)
 
 print 'Testing model...'
 score = model.evaluate(X_test, Y_test, batch_size = batch_size, verbose=0)
