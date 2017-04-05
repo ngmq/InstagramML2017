@@ -647,7 +647,7 @@ Ta cần cho chạy script này khoảng 1 lần / phút hoặc tốt hơn là 1
 						}
 					}
 				}
-			],
+			}],
 			u 'id': u '356564939'
 		}, {
 			u 'username': u 'instagood',

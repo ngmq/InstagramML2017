@@ -96,7 +96,7 @@ while True:
         
         print username, len(posts)
         for p in posts:
-            pid = p.get('id')
+            pid = p.get('instagram').get('id')
             if predicted_post.get(pid) is not None:
                 continue
             L = list()

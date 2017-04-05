@@ -2,9 +2,9 @@ import json
 import ijson
 import time
 
-# f = open('dataset.json')
-# data = json.load(f)
-# f.close()
+f = open('dataset.json')
+data = json.load(f)
+f.close()
 
 # print type(data)
 # print len(data)
@@ -39,11 +39,10 @@ import time
 # print data[4].get("id")
 # print "============================="
 # print type(data[0].get("posts")) # type = list
-# p0 = data[0].get("posts")
-# for post in p0:
-    # if post.get('instagram').get('likes').get('count') > 20000:
-        # print post.get('instagram').get('code')
-        # break;
+p0 = data[0].get("posts")
+for p in p0:
+    pid = p.get('instagram').get('id')
+    print pid
 # print len(p0)
 # print type(p0[0])
 # print p0[0].keys()
