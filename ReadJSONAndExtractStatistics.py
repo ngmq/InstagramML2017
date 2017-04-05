@@ -56,14 +56,13 @@ for p in kissinfashion:
     labels = p.get('annotations').get('labelAnnotations')
     if labels is not None:
         for label in labels:
-            # all_label.add(label.get('description') )
             if all_label.get(label.get('description')) is None:
                 all_label[label.get('description')] = cnt
                 cnt += 1
     
 nlabel = len(all_label)
-# print nlabel
-# print all_label
+print nlabel
+print all_label
 
 X = list()
 Y = list()
@@ -89,18 +88,26 @@ for p in kissinfashion:
     else:
         L.extend([0] * 10)
     
-    # print L
-    
     """ Label features """
     words = [0] * nlabel
     labels = p.get('annotations').get('labelAnnotations')
+    
     if labels is not None:
-        for label in labels:
+        for i, label in enumerate(labels):
             words[all_label[label.get('description')]] = 1
             
     L.extend(words)
     
-    # print L
+    """ Image Properties Features """
+    colors = p.get('annotations').get('imagePropertiesAnnotation').get('dominantColors').get('colors')
+    # if len(colors) < 7:
+        # print 'new len: ', len(colors)
+    for dcolor in colors[0:7]:
+        r, g, b = dcolor.get('color').get('red', 0), dcolor.get('color').get('green', 0), dcolor.get('color').get('blue', 0)
+        fraction = dcolor['pixelFraction']
+        rgb = (r*65536)+(g*256)+b
+        rgb = rgb * fraction
+        L.append(rgb)
     
     """ Done """
     X.append(L)
@@ -108,7 +115,7 @@ for p in kissinfashion:
     Y.append(like)
     
     
-ndimension = 10 + nlabel
+ndimension = 10 + nlabel + 7
 print 'ndimension = ', ndimension
 np.savez('json_data' + '_' + username, X, Y)
     

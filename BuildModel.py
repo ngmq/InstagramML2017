@@ -66,10 +66,22 @@ print 'Done reading data.'
 """
 threshold = 0.095
 def calc_point(y_true, y_pred):
-    diff = K.abs(y_true - y_pred)
-    maxdiff = y_true + minY / (maxY  - minY)
-    maxdiff = maxdiff * threshold
+    Y_true = y_true * (maxY - minY) + minY
+    Y_pred = y_pred * (maxY - minY) + minY
+    diff = K.abs(Y_true - Y_pred)
+    maxdiff = Y_true * threshold
     return K.mean(K.less_equal(diff, maxdiff))
+    
+def calc_loss(y_true, y_pred):
+    Y_true = y_true * (maxY - minY) + minY
+    Y_pred = y_pred * (maxY - minY) + minY
+    diff = K.abs(Y_true - Y_pred)
+    maxdiff = Y_true * threshold
+    mask = K.less_equal(diff, maxdiff)
+    
+    diffy = K.abs(y_true - y_pred) ** 2
+    import tensorflow as tf
+    return K.mean(tf.boolean_mask(diffy, mask))
     
 batch_size = 16
 epochs = 30
@@ -79,7 +91,7 @@ model = Sequential()
 model.add(Dense(30, input_shape = (ndimension, )))
 model.add(Activation('relu'))
 model.add(Dropout(0.25))
-model.add(Dense(30, input_shape = (ndimension, )))
+model.add(Dense(20))
 model.add(Activation('tanh'))
 model.add(Dropout(0.25))
 model.add(Dense(1))
@@ -88,9 +100,7 @@ model.add(Activation('sigmoid'))
 print 'Compiling model...'
 
 sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='mean_squared_error',
-              optimizer=sgd,
-              metrics=[calc_point])
+model.compile(loss=calc_loss, optimizer=sgd, metrics=[calc_point])
 
               
 print 'Fitting model...'
