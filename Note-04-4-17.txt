@@ -57,8 +57,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 				]
 			}
 		}, {
-			u 'descriptio
-			n': u 'RL',
+			u 'description': u 'RL',
 			u 'boundingPoly': {
 				u 'vertices': [{
 						u 'y': 600,
@@ -97,8 +96,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 	],
 	u 'webDetection': {
 		u 'webEntities': [{
-				u 'entityId': u '/m/0hgr
-				6',
+				u 'entityId': u '/m/0hgr6',
 				u 'score': 1.0520141,
 				u 'description': u 'Denim'
 			}, {
@@ -141,6 +139,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 				u 'description': u 'Photography'
 			}
 		],
+    }
 	u 'labelAnnotations': [{
 			u 'score': 0.92466015,
 			u 'mid': u '/m/09j2d',
@@ -151,8 +150,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 			u 'description': u 'blue'
 		}, {
 			u 'score': 0.87708014,
-			u 'mid': u '/m/0hg
-			r6',
+			u 'mid': u '/m/0hgr6',
 			u 'description': u 'denim'
 		}, {
 			u 'score': 0.7925373,
@@ -294,8 +292,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 						u 'x': 542.5395,
 						u 'z': -0.0005035389
 					},
-					u 'typ
-					e': u 'LEFT_EYE'
+					u 'type': u 'LEFT_EYE'
 				}, {
 					u 'position': {
 						u 'y': 246.37659,
@@ -346,8 +343,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 					},
 					u 'type': u 'NOSE_TIP'
 				}, {
-					u 'pos
-					ition': {
+					u 'position': {
 						u 'y': 283.80878,
 						u 'x': 553.5059,
 						u 'z': -19.238087
@@ -401,8 +397,7 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 						u 'x': 552.7997,
 						u 'z': -19.630283
 					},
-					u 'typ
-					e': u 'NOSE_BOTTOM_CENTER'
+					u 'type': u 'NOSE_BOTTOM_CENTER'
 				}, {
 					u 'position': {
 						u 'y': 243.4238,
@@ -575,280 +570,12 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 				]
 			}
 		}
-	],
-	u 'fullTextAnnotation': {
-		u 'text': u 'RL\nER\n',
-		u 'pages': [{
-				u 'width': 1080,
-				u 'property': {
-					u 'detectedLanguages': [{
-							u 'languageCode': u 'no'
-						}
-					]
-				},
-				u 'blocks': [{
-						u 'boundingBox': {
-							u 'vertices': [{
-									u 'y':
-									600,
-									u 'x': 539
-								}, {
-									u 'y': 599,
-									u 'x': 562
-								}, {
-									u 'y': 620,
-									u 'x': 563
-								}, {
-									u 'y': 621,
-									u 'x': 540
-								}
-							]
-						},
-						u 'blockType': u 'TEXT',
-						u 'property': {
-							u 'detectedLanguages': [{
-									u 'languageCode': u 'uz'
-								}
-							]
-						},
-						u 'paragraphs': [{
-								u 'boundingBox': {
-									u 'vertices': [{
-											u 'y': 599,
-											u 'x': 539
-										}, {
-											u 'y': 599,
-											u 'x': 563
-										}, {
-											u 'y': 621,
-											u 'x': 563
-										}, {
-											u 'y': 621,
-											u 'x': 539
-										}
-									]
-								},
-								u 'property': {
-									u 'detectedLanguages':
-									[{
-											u 'languageCode': u 'uz'
-										}
-									]
-								},
-								u 'words': [{
-										u 'boundingBox': {
-											u 'vertices': [{
-													u 'y': 600,
-													u 'x': 539
-												}, {
-													u 'y': 599,
-													u 'x': 562
-												}, {
-													u 'y': 620,
-													u 'x': 563
-												}, {
-													u 'y': 621,
-													u 'x': 540
-												}
-											]
-										},
-										u 'symbols': [{
-												u 'boundingBox': {
-													u 'vertices': [{
-															u 'y': 600,
-															u 'x': 539
-														}, {
-															u 'y': 600,
-															u 'x': 549
-														}, {
-															u 'y': 621,
-															u 'x': 550
-														}, {
-															u 'y': 621,
-															u 'x': 540
-														}
-													]
-												},
-												u 'text': u 'R',
-												u 'property': {
-													u 'detectedLanguag
-													es': [{
-															u 'languageCode': u 'no'
-														}
-													]
-												}
-											}, {
-												u 'boundingBox': {
-													u 'vertices': [{
-															u 'y': 599,
-															u 'x': 551
-														}, {
-															u 'y': 599,
-															u 'x': 562
-														}, {
-															u 'y': 620,
-															u 'x': 563
-														}, {
-															u 'y': 620,
-															u 'x': 552
-														}
-													]
-												},
-												u 'text': u 'L',
-												u 'property': {
-													u 'detectedBreak': {
-														u 'type': u 'EOL_SURE_SPACE'
-													},
-													u 'detectedLanguages': [{
-															u 'languageCode': u 'no'
-														}
-													]
-												}
-											}
-										],
-										u 'property': {
-											u 'detectedLanguages': [{
-													u 'languageCode': u 'uz'
-												}
-											]
-										}
-									}
-								]
-							}
-						]
-					}, {
-						u 'boundingBox': {
-							u 'vertices': [{
-									u 'y': 1110,
-									u 'x': 655
-								}, {
-									u 'y': 1110,
-									u 'x': 672
-								}, {
-									u 'y': 1129,
-									u 'x': 672
-								}, {
-									u 'y': 1129,
-									u 'x': 655
-								}
-							]
-						},
-						u 'blockType': u 'TEXT',
-						u 'property': {
-							u 'detectedLanguages': [{
-									u 'languageCode': u 'no'
-								}
-							]
-						},
-						u 'paragraphs': [{
-								u 'boundingBox': {
-									u 'vertices': [{
-											u 'y': 1110,
-											u 'x': 655
-										}, {
-											u 'y': 1110,
-											u 'x': 672
-										}, {
-											u 'y': 1129,
-											u 'x': 672
-										}, {
-											u 'y': 112
-											9,
-											u 'x': 655
-										}
-									]
-								},
-								u 'property': {
-									u 'detectedLanguages': [{
-											u 'languageCode': u 'no'
-										}
-									]
-								},
-								u 'words': [{
-										u 'boundingBox': {
-											u 'vertices': [{
-													u 'y': 1129,
-													u 'x': 655
-												}, {
-													u 'y': 1110,
-													u 'x': 655
-												}, {
-													u 'y': 1110,
-													u 'x': 672
-												}, {
-													u 'y': 1129,
-													u 'x': 672
-												}
-											]
-										},
-										u 'symbols': [{
-												u 'boundingBox': {
-													u 'vertices': [{
-															u 'y': 1129,
-															u 'x': 655
-														}, {
-															u 'y': 1110,
-															u 'x': 655
-														}, {
-															u 'y': 1110,
-															u 'x': 662
-														}, {
-															u 'y': 1129,
-															u 'x': 662
-														}
-													]
-												},
-												u 'text': u 'E',
-												u 'property': {
-													u 'detectedLanguages': [{
-															u 'languageCode': u 'no'
-														}
-													]
-												}
-											}, {
-												u 'boundingBox': {
-													u 'vertices': [{
-															u 'y': 1129,
-															u 'x': 664
-														}, {
-															u 'y': 1110,
-															u 'x': 664
-														}, {
-															u 'y': 1110,
-															u 'x': 672
-														}, {
-															u 'y': 1129,
-															u 'x': 672
-														}
-													]
-												},
-												u 'text': u 'R',
-												u 'property': {
-													u 'detectedBreak': {
-														u 'type': u 'EOL_SURE_SPACE'
-													},
-													u 'detectedLanguages': [{
-															u 'languageCode': u 'no'
-														}
-													]
-												}
-											}
-										],
-										u
-										'property': {
-											u 'detectedLanguages': [{
-													u 'languageCode': u 'no'
-												}
-											]
-										}
-									}
-								]
-							}
-						]
-					}
-				],
-				u 'height': 1349
-			}
-		]
-	},
+	]
 }
+
+6) Một vài kết quả từ data investigation:
+6.a Hiệu ứng KHÔNG có face và có face: 
+# Ttest_indResult(statistic=3.1289134685704121, pvalue=0.0018050893450610637) <= significant difference.
+test statistic > 0 và p/ 2 < 0.05 nên ta kết luận KHÔNG có face thì số likes cao hơn.
+
+6.b 
