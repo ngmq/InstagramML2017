@@ -577,4 +577,6 @@ Lưu ý: dùng mathplotlib.hist(Y_output) được một cái histogram xấp x�
 # Ttest_indResult(statistic=3.1289134685704121, pvalue=0.0018050893450610637) <= significant difference.
 test statistic > 0 và p/ 2 < 0.05 nên ta kết luận KHÔNG có face thì số likes cao hơn.
 
-6.b 
+7) Sau khi extract features từ file json thì ta sử dụng số features này cho đầu vào của mạng MLP. Performance trên training set của mạng này
+rất ổn định, với epoch cỡ 500 ta thậm chí nâng được accuracy từ 30% lên tới 97% cho training set, nghĩa là model CÓ học được một cái gì đó.
+Tuy nhiên, performance của model trên test set là thấp và rất không ổn định. Giá trị accuracy tăng giảm liên tục.

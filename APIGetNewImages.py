@@ -141,6 +141,6 @@ while True:
             predict = models[idx].predict(L)
             predict = int(predict[0])
             predicted_post[pid] = predict
-            response = requests.post(post_uri, data={"post" : pid, "likes" : predict}, auth = HTTPBasicAuth(_user, _pass))
+            response = requests.post(post_uri, json={"post" : pid, "likes" : predict}, auth = HTTPBasicAuth(_user, _pass))
             print response.status_code
             print response.reason

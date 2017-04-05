@@ -1,5 +1,6 @@
 import json
 import ijson
+import time
 
 # f = open('dataset.json')
 # data = json.load(f)
@@ -76,6 +77,35 @@ from requests.auth import HTTPBasicAuth
 post_uri = "http://challenges.instagram.unpossib.ly/api/submissions"
 _user = 'manhquan233@gmail.com'
 _pass = 'VmJsb83qQBwyuk0PaiyxDrCUgzMZOlrQ'
-r = requests.post(post_uri, data={"post" : "1483235252197708444", "likes" : 128}, auth = HTTPBasicAuth(_user, _pass))
-print r.status_code
-print r.reason
+response = requests.post(post_uri, json={"post" : "TESTABC12345", "likes" : 128}, auth = HTTPBasicAuth(_user, _pass))
+print response.status_code
+print response.reason
+print response.json()
+
+# all_acc = ['kissinfashion', 'instagood', 'beautifuldestinations', 'etdieucrea', 'josecabaco']
+# def get_idx(username):
+    # for i, s in enumerate(all_acc):
+        # if username == s:
+            # return i
+
+# while True:
+    # time.sleep(6)
+    # print 'Requesting...'
+    # new_codes = list()
+    # r = requests.get('http://challenges.instagram.unpossib.ly/api/live', auth=HTTPBasicAuth(_user, _pass))
+    # data = r.json()
+    # if r.status_code != 200 or data.get('success') != True:
+        # continue
+    # print 'Request OK. Processing...'
+    # data = data.get('accounts')
+    # for dict in data:
+        # username = dict.get('username')
+        # idx = get_idx(username)
+        # posts = dict.get('posts')
+        
+        # print username, len(posts)
+        
+        # response = requests.post(post_uri, data={"post" : "1483235252197708444", "likes" : 128}, auth = HTTPBasicAuth(_user, _pass))
+        # print response.status_code
+        # print response.reason
+        # print response.json()
