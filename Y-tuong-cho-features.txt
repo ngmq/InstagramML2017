@@ -21,4 +21,8 @@ Từ dự đoán này cho ra ba vấn đề:
 Ý tưởng này cần tìm hiểu thêm dùng deep net cho regression biến rời rạc sao cho hiệu quả. Cách làm này có thể sẽ fail nhiều hoặc ít,
 vì regression là học một hàm số cố định, trong khi số likes thì không phải là một số cố định.
 
+Ý tưởng 5: dùng RNN để xử lý file json như một đoạn text thẳng luôn! (ý tưởng táo bạo :)) ) ta đã biết rằng khi áp dụng AI trong software engineering,
+việc xử lý các file code như là file text để tạo ra các clusters nhỏ và tiến hành remodularization là một xu hướng mới đang phổ biến. 
+JSON cũng là code, vậy tại sao không? 
+=> Triển khai ngay ý tưởng này *****
 
