@@ -1,0 +1,26 @@
+1) Sau khi thử CNN các kiểu với nhiều bộ tham số không được thì ta quay về làm KNN với K là toàn bộ số ảnh trong training set.
+Features là hand-crafted được dựng từ thông tin của face, color và vector của labelAnnotation.
+
+KNN này rất insensitive và chỉ chạy đúng khi số likes dao động nhỏ quanh một giá trị trung bình. Dự đoán cho các ảnh luôn là:
+
+kissinfashion: 23.xxx
+instagood: 9.xxx
+beautifuldestination: 172.xxx
+josecabaco: 3xx 
+etdieucrea: 2.xxx
+
+=> ý tưởng không thành công. Cần nghiên cứu thêm Deep learning for styles images. 
+
+2) Một nguyên nhân làm cho CNN fails có thể là do việc sử dụng Pooling layer. Trong thí nghiệm Deep Reinforcement Learning chơi game Atari
+của nhóm DeepMind thì họ không sử dụng Pooling layer bởi vì Pooling layer được thiết kế cho translation invariance, mà trong game Atari
+thì spatial information giữa các pixels là quan trọng nên không thể sử dụng Pooling layer được.
+Đáng lẽ phải làm tương tự với các ảnh trong bài của ta, vì sự bố trí sắp xếp không gian trong ảnh là rất quan trọng.
+Sau khi cuộc thi kết thúc nên làm thử nghiệm bỏ pooling layer xem kết quả đạt được có khả quan hơn không.
+
+3) Một lưu ý nữa là trong bài hướng dẫn mang tính nhập môn về Data Science "Data Science a Kaggle walkthrough" thì tác giả có nhắc
+tới việc xây dựng features sao cho sensitive đến những variance nhỏ trong dữ liệu. Cần đọc thêm và tìm hiểu xem có áp dụng được gì không.
+
+4) Mô hình đã lên sóng. Lúc đầu bị lỗi chỗ gọi dictionary labels với labels mới chưa có trong tập test nên bị miss mất một ảnh.
+Hi vọng không bị 0 điểm và không xếp bét cho đỡ xấu hổ vì đã để chữ 'VN' vào tên đội VNGuys =))
+
+5) Kết thúc ngày 7/4 thì mô hình KNN cùi bắp đã dự đoán trúng được một vài ảnh và không bị zero điểm :)) thậm chí còn bò vào top 3 =))

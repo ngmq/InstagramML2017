@@ -94,7 +94,8 @@ while True:
         idx = get_idx(username)
         posts = dict.get('posts')
         
-        print username, len(posts)
+        if len(posts) > 1:
+            print "Predicting for ", username
         for p in posts:
             pid = p.get('instagram').get('id')
             if predicted_post.get(pid) is not None:
@@ -125,7 +126,7 @@ while True:
     
             if labels is not None:
                 for i, label in enumerate(labels):
-                    words[all_label[idx][label.get('description')]] = 1
+                    words[all_label[idx].get(label.get('description'), 0] = 1
             
             L.extend(words)
     
@@ -143,4 +144,3 @@ while True:
             predicted_post[pid] = predict
             response = requests.post(post_uri, json={"post" : pid, "likes" : predict}, auth = HTTPBasicAuth(_user, _pass))
             print response.status_code
-            print response.reason
