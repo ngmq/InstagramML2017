@@ -3,6 +3,7 @@ from keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input
 from keras.models import Model
 from keras.layers import Input, Flatten, Dense
+from keras import optimizers
 import numpy as np
 
 vgg16 = VGG16(weights='imagenet', include_top=False, pooling='max')
@@ -19,8 +20,7 @@ print type(features)
 print features.shape # Shape = (1, 512), could be too large
 # print features
 
-print vgg16.summary()
-
+# print vgg16.summary()
 
 regressionLayer = Dense(128, activation='tanh', name='PCALayer')(vgg16.output)
 regressionLayer = Dense(1, activation='relu', name='RegressionLayer')(regressionLayer)
@@ -32,6 +32,11 @@ for layer in model.layers[:20]:
 	layer.trainable = False
 	print layer.name
 
-print 'Model summary'
-print model.summary()
-print len(model.layers)
+# print 'Model summary'
+# print model.summary()
+# print len(model.layers)
+
+print "Compiling..."
+model.compile(loss='binary_crossentropy', optimizer=optimizers.SGD(lr=1e-4, momentum=0.9))
+
+print "Compile done."
