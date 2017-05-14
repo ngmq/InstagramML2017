@@ -37,6 +37,10 @@ for layer in model.layers[:20]:
 # print len(model.layers)
 
 print "Compiling..."
-model.compile(loss='binary_crossentropy', optimizer=optimizers.SGD(lr=1e-4, momentum=0.9))
+model.compile(loss='mean_squared_error', optimizer=optimizers.SGD(lr=1e-4, momentum=0.9))
 
 print "Compile done."
+
+# It turns out that ImageDataGenerator in Keras was not designed for regression task X_X
+# See http://stackoverflow.com/questions/41749398/using-keras-imagedatagenerator-in-a-regression-model
+# TODO: design new learning scheme
